@@ -29,3 +29,15 @@ def create_recipe():
 
     Recipes.save(request.form)
     return redirect('/dashboard')
+
+@app.route('/view/reseña/<int:id>') 
+def mostrar_receta(id):
+    if 'user_id' not in session:  
+        return redirect('/')
+    formulario = {
+        "id": session['user_id']
+    }
+    user = User.get_by_id(formulario) 
+    formulario_receta = { "id": id }
+    recetas = Recipes.get_by_id(formulario_reseña)
+    return render_template('mostrar_receta.html', user=user, recetas=recetas)

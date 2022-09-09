@@ -40,3 +40,31 @@ class Recipes:
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
     
+    @classmethod
+    def get_all(cls):
+        query = "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id;"
+        results = connectToMySQL('my_fridge').query_db(query) #Lista de diccionarios 
+        recipes = []
+        for recipe in results:
+            #recipe = diccionario
+            recipes.append(cls(recipe)) #1.- cls(recipe) me crea una instancia en base al diccionario, 2.- Agrego la instancia a mi lista de recetas
+        return recipes
+
+    @classmethod
+    def get_by_id(cls, formulario): #formulario = {id: 1}
+        query = "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
+        result = connectToMySQL('my_fridge').query_db(query, formulario) #Lista de diccionarios
+        reseña = cls(result[0])
+        return reseña
+
+    @classmethod
+    def update(cls, formulario):
+        query = "UPDATE reseñas SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , food_type=%(food_type)s , description=%(description)s , preparation=%(preparation)s  WHERE id = %(id)s"
+        result = connectToMySQL('my_fridge').query_db(query, formulario)
+        return result
+
+    @classmethod
+    def delete(cls, formulario): #Recibe formulario con id de receta a borrar
+        query = "DELETE FROM recipes WHERE id = %(id)s"
+        result = connectToMySQL('my_fridge').query_db(query, formulario)
+        return result

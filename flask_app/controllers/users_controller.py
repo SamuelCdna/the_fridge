@@ -69,8 +69,8 @@ def dashboard():
     }
 
     user = User.get_by_id(formulario)
-
-    return render_template('dashboard.html', user=user)
+    recipes = Recipes.get_all()
+    return render_template('dashboard.html', user=user, recipes=recipes)
 
 @app.route('/logout')
 def logout():
