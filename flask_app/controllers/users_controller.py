@@ -3,7 +3,7 @@ from flask_app import app
 
 #Importación del modelo
 from flask_app.models.users import User
-
+from flask_app.models.recipes import Recipes
 #Importación BCrypt
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -12,11 +12,15 @@ bcrypt = Bcrypt(app)
 def index():
     return render_template('index.html')
 
+@app.route('/registro')
+def registro():
+    return render_template('registro.html')
+
 @app.route('/registrate', methods=['POST'])
 def registrate():
     #Validar la información ingresada
     if not User.valida_usuario(request.form):
-        return redirect('/')
+        return redirect('/registro')
 
     pwd = bcrypt.generate_password_hash(request.form['password']) #Encriptamos el password del usuario
 
