@@ -10,7 +10,7 @@ class Ingredient:
         self.updated_at= data['updated_at']
 
     @staticmethod
-    def valida_receta(formulario):
+    def valid_ingredients(formulario):
         es_valido =True
 
         if len(formulario['name']) < 3:
@@ -20,6 +20,7 @@ class Ingredient:
         # if len(formulario['amount']) < 1:
         #     flash('Debe ingresar 1 cantidad al menos 1 categoria', 'receta')
         #     es_valido = False
+        return es_valido
 
     @classmethod 
     def save(cls, formulario):
@@ -30,3 +31,9 @@ class Ingredient:
         #PENDIENTES
 
         #left join acorde con lo que tengan los otros compañeros 
+
+    @classmethod
+    def delete(cls, formulario): #Recibe formulario con id de receta a borrar
+        query = "DELETE FROM ingredients WHERE id = %(id)s"
+        result = connectToMySQL('my_fridge').query_db(query, formulario)
+        return result

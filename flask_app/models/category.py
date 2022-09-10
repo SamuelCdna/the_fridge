@@ -14,7 +14,7 @@ class Category:
         es_valido =True
 
         if len(formulario['name']) < 3:
-            flash('Debe seleccionar al menos 3 caracteres', 'receta')
+            flash('Debe seleccionar al menos 3 caracteres', 'category')
             es_valido = False
 
     @classmethod 

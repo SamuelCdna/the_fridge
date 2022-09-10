@@ -95,7 +95,7 @@ def mostrar_receta(id):
 def CreateCategory():
     if 'user_id' not in session: 
         return redirect('/')
-    if not Category.valida_receta(request.form): 
+    if not Category.valida_ingredients(request.form): 
         return redirect('/C')
     Category.save(request.form)
     return redirect('/dashboard')

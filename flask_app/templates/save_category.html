@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <a href="/dashboard" class="btn btn-primary">Home</a>
-        {% with messages = get_flashed_messages(category_filter=['my_fridge']) %}
+        {% with messages = get_flashed_messages(category_filter=['category']) %}
         {% if messages %}
 
         <div class="alert alert-danger">
