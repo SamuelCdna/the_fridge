@@ -5,7 +5,7 @@ from flask_app import app
 from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
-from flask_app.controllers import users_controller, recipes_controller, ingredients_controller
+from flask_app.controllers import users_controller, recipes_controller, ingredients_controller, category_controller
 
 @app.route('/Creceta')
 def Creceta():
@@ -19,7 +19,9 @@ def Creceta():
 
     user = User.get_by_id(formulario)
 
-    return render_template('create_recipe.html', user=user)
+    categorias= Category.get_all()
+    
+    return render_template('create_recipe.html', user=user, categorias=categorias)
 
 
     
@@ -88,14 +90,14 @@ def mostrar_receta(id):
     }
     user = User.get_by_id(formulario) 
     formulario_receta = { "id": id }
-    recetas = Recipes.get_by_id(formulario_reseña)
+    recetas = Recipes.get_by_id(formulario_receta)
     return render_template('mostrar_receta.html', user=user, recetas=recetas)
 
 @app.route('/create_category', methods=['POST'])
 def CreateCategory():
     if 'user_id' not in session: 
         return redirect('/')
-    if not Category.valida_ingredients(request.form): 
+    if not Category.valida_receta(request.form): 
         return redirect('/C')
     Category.save(request.form)
     return redirect('/dashboard')

@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <a href="/dashboard" class="btn btn-primary">Home</a>
-        {% with messages = get_flashed_messages(category_filter=['category']) %}
+        {% with messages = get_flashed_messages(category_filter=['categoria']) %}
         {% if messages %}
 
         <div class="alert alert-danger">
@@ -21,7 +21,7 @@
         {% endif %}
     {% endwith %}
 
-    <form action="/create_categorias" method="post"> 
+    <form action="/save_category" method="post"> 
         <div class="form-group">
             <label for="name" class="titleR">Categorias:</label>
             <input type="text" id="name" name="name"class="form-control">

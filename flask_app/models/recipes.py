@@ -39,7 +39,7 @@ class Recipes:
 
     @classmethod 
     def save(cls, formulario):
-        query = "INSERT INTO recipes (name, time_cook, level_recipe, food_type, description, preparation, user_id ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s, %(food_type)s,  %(description)s, %(preparation)s, %(user_id)s )"
+        query = "INSERT INTO recipes (name, time_cook, level_recipe, food_type, description, preparation, user_id, category_id ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s, %(food_type)s,  %(description)s, %(preparation)s, %(user_id)s ,%(category_id)s)"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
     
