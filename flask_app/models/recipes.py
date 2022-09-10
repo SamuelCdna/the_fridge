@@ -7,14 +7,14 @@ class Recipes:
         self.name = data['name']
         self.time_cook = data['time_cook']
         self.level_recipe = data['level_recipe']
-        self.preference = data['preference']
-        self.food_type = data['food_type']
+        
         self.description = data['description']
         self.preparation = data['preparation']
         self.created_at= data['created_at']
         self.updated_at= data['updated_at']
         self.user_id = data['user_id']
         self.category_id = data['category_id']
+        self.img = data['img']
         
     
     @staticmethod
@@ -39,13 +39,13 @@ class Recipes:
 
     @classmethod 
     def save(cls, formulario):
-        query = "INSERT INTO recipes (name, time_cook, level_recipe, food_type, description, preparation, user_id, category_id ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s, %(food_type)s,  %(description)s, %(preparation)s, %(user_id)s ,%(category_id)s)"
+        query = "INSERT INTO recipes (name, time_cook, level_recipe, description, preparation, user_id, category_id , img ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s,  %(description)s, %(preparation)s, %(user_id)s ,%(category_id)s,%(img)s)"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
     
     @classmethod
-    def get_all(cls):
-        query = "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id;"
+    def get_all(cls):#"SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id;"
+        query = "SELECT * FROM recipes;"
         results = connectToMySQL('my_fridge').query_db(query) #Lista de diccionarios 
         recipes = []
         for recipe in results:
@@ -62,7 +62,7 @@ class Recipes:
 
     @classmethod
     def update(cls, formulario):
-        query = "UPDATE reseñas SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , food_type=%(food_type)s , description=%(description)s , preparation=%(preparation)s  WHERE id = %(id)s"
+        query = "UPDATE reseñas SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , description=%(description)s , preparation=%(preparation)s  WHERE id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
 
@@ -80,4 +80,12 @@ class Recipes:
         for recipe in result:
             #recipe = diccionario
             recipes.append(cls(recipe))
+        return recipes
+
+    @classmethod
+    def categoria_id(cls, formulario):
+        query = "SELECT * FROM recipes WHERE category_id = %(category_id)s"
+        result = connectToMySQL('my_fridge').query_db(query, formulario)
+        print(result)
+        producto= cls(result[0]) #creamos una instancia de producto
         return recipes

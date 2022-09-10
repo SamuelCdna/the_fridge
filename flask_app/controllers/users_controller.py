@@ -71,7 +71,7 @@ def dashboard():
     formulario = {
         'id': session['user_id']
     }
-    print(formulario)
+    # print(formulario)
     if 'user_id' not in session:
         return redirect('/')
 
@@ -79,6 +79,7 @@ def dashboard():
     recipes = Recipes.get_all()
 
     session['user_id'] = user.id
+    
     
     if user.id == 1 :
         return render_template('admi_dashboard.html', user=user, recipes=recipes)

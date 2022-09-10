@@ -28,7 +28,7 @@ def Creceta():
 
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
-
+    print('hola')
     print(request.form)
 
     if 'user_id' not in session: 
@@ -38,20 +38,10 @@ def create_recipe():
         return redirect('/Creceta')
 
     Recipes.save(request.form)
+    
     return redirect('/dashboard')
 
-@app.route('/admi/recipes')
-def Createnewrecipe():
-    if 'user_id' not in session:
-        return redirect('/')
 
-    formulario = {
-        'id': session['user_id']
-    }
-
-    user = User.get_by_id(formulario)
-
-    return render_template('admi_recipe.html', user=user)
 
 
 
@@ -93,14 +83,7 @@ def mostrar_receta(id):
     recetas = Recipes.get_by_id(formulario_receta)
     return render_template('mostrar_receta.html', user=user, recetas=recetas)
 
-@app.route('/create_category', methods=['POST'])
-def CreateCategory():
-    if 'user_id' not in session: 
-        return redirect('/')
-    if not Category.valida_receta(request.form): 
-        return redirect('/C')
-    Category.save(request.form)
-    return redirect('/dashboard')
+
 
 @app.route('/search_ingredients', methods=['POST'])
 def SearchIngredients():
@@ -108,3 +91,6 @@ def SearchIngredients():
         return redirect('/')
     recipes = Recipes.searchRecipiesByIngredients(request.form["search"])
     return render_template('ingredients.html', recipes=recipes)
+
+
+
