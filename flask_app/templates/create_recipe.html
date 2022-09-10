@@ -27,7 +27,7 @@
             <h1>Añade una nueva receta!!</h1>
             <form action="/create_recipe" method="post">
                 <input type="hidden" value="{{user.id}}" name="user_id">
-             
+            
                 <div class="col-6">
                     <div class="form-group">
                         <label for="name">Nombre</label>
@@ -54,13 +54,7 @@
                             <option value="3">Experto</option>
                         </select>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="food_type">Clase de Comida: </label>
-                        <select name="food_type" id="food_type">
-                            <option value="1">Asiatica</option>
-                            <option value="2">Hindu</option>
-                        </select>
-                    </div> -->
+
                     <div class="form-group">
                         <label for="description">descripcion</label>
                         <input type="text" id="description" name="description" class="form-control">

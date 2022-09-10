@@ -7,7 +7,7 @@ class Recipes:
         self.name = data['name']
         self.time_cook = data['time_cook']
         self.level_recipe = data['level_recipe']
-        
+        self.id = data['id']
         self.description = data['description']
         self.preparation = data['preparation']
         self.created_at= data['created_at']
@@ -54,11 +54,11 @@ class Recipes:
         return recipes
 
     @classmethod
-    def get_by_id(cls, formulario): #formulario = {id: 1}
-        query = "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
+    def get_by_id(cls, formulario): #formulario = {id: 1} "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
+        query = "SELECT * FROM recipes WHERE id = %(id)s;"
         result = connectToMySQL('my_fridge').query_db(query, formulario) #Lista de diccionarios
-        reseña = cls(result[0])
-        return reseña
+        recipe = cls(result[0])
+        return recipe
 
     @classmethod
     def update(cls, formulario):

@@ -61,12 +61,12 @@ def login():
 
     session['user_id'] = user.id
 
-    return redirect('/dashboard')
+    return redirect('/dashboard/0')
 
 
 
-@app.route('/dashboard')
-def dashboard():
+@app.route('/dashboard/<int:category>')
+def dashboard(category):
 
     formulario = {
         'id': session['user_id']
@@ -79,12 +79,25 @@ def dashboard():
     recipes = Recipes.get_all()
 
     session['user_id'] = user.id
+
     
+
     
     if user.id == 1 :
         return render_template('admi_dashboard.html', user=user, recipes=recipes)
+
     else:
-        return render_template('dashboard.html', user=user, recipes=recipes)
+        if category == 0:
+            categories= Category.get_all()
+
+        else:
+
+            form_category = {
+                "category" : category
+            }
+            categories= Category.get_by_id(form_category)
+    
+    return render_template('dashboard.html', user=user, recipes=recipes, categories = categories)
 
 
 

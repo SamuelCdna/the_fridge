@@ -71,19 +71,51 @@ def ingredients():
 
     return render_template('ingredients.html', user=user, recipies=[])
 
-@app.route('/view/reseña/<int:id>') 
-def mostrar_receta(id):
+@app.route('/view_recipes') 
+def view_recipes():
     if 'user_id' not in session:  
         return redirect('/')
     formulario = {
         "id": session['user_id']
     }
     user = User.get_by_id(formulario) 
-    formulario_receta = { "id": id }
-    recetas = Recipes.get_by_id(formulario_receta)
-    return render_template('mostrar_receta.html', user=user, recetas=recetas)
+    recipes = Recipes.get_all()
+    return render_template('view_recipesadmi.html', user=user, recipes=recipes)
 
 
+@app.route('/edit/recipe/<int:id>') 
+def edit_receta(id):
+    if 'user_id' not in session: 
+        return redirect('/')
+    formulario = {
+        'id': session['user_id']
+    }
+    
+    user = User.get_by_id(formulario) 
+    formulario_receta = {"id": id}
+
+    receta = Recipes.get_by_id(formulario_receta)
+    categorias= Category.get_all()
+
+    return render_template('edit_receta.html', user=user, receta=receta, categorias=categorias)
+
+# @app.route('/edit/recipe')
+# def edit_reci():
+
+    if 'user_id' not in session:  
+        return redirect('/')
+
+    formulario = {
+        "id": session['user_id']
+    }
+
+    id = id_recipe
+
+    user = User.get_by_id(formulario) 
+    categorias= Category.get_all()
+    recipe = Recipes.get_by_id(id)
+
+    return render_template('all_recipes.html', user=user, recipe=recipe, categorias=categorias)
 
 @app.route('/search_ingredients', methods=['POST'])
 def SearchIngredients():

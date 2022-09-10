@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard" class="btn btn-primary">Home</a>
+        
+        <h1>Usuarios</h1>
+    
+    <table class="table table-hover mx-auto">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
+            </tr>
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td><img src="{{ recipe.img}}"   width="80px"  alt="{{recipe.name}}"></td>
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.description}} </td>
+                        <td>{{recipe.category_id}}</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Mostrar</a>
+                            <a href="/edit/recipe/{{recipe.id}}" class="btn btn-primary">Editar</a>
+                            <a href="/delete/{{recipe.id}}" class="btn btn-primary">Borrar</a>
+                            
+                        </td>
+                        
+                        
+                    </tr>
+                {% endfor%}
+
+            </tbody>
+        </thead>
+
+        
+
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

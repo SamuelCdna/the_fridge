@@ -11,7 +11,9 @@ def create_ingredientes():
     if 'user_id' not in session: #Comprobamos que el usuario haya iniciado sesiónh
         return redirect('/')
 
-    return render_template('/search_ingredients.html')
+    return render_template('/save_ingredients.html')
+
+    
 
 @app.route('/save_ingredients', methods=['POST'])
 def save_ingredients():
