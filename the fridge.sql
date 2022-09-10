@@ -30,6 +30,8 @@ USE `my_fridge` ;
 -- -----------------------------------------------------
 -- Table `my_fridge`.`users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`users` ;
+
 CREATE TABLE IF NOT EXISTS `my_fridge`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(100) NULL,
@@ -46,6 +48,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `my_fridge`.`categorys`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`categorys` ;
+
 CREATE TABLE IF NOT EXISTS `my_fridge`.`categorys` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NULL,
@@ -58,10 +62,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `my_fridge`.`recipes`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`recipes` ;
+
 CREATE TABLE IF NOT EXISTS `my_fridge`.`recipes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NULL,
-  `time_cook` DATE NULL,
+  `time_cook` INT NULL,
   `level_recipe` VARCHAR(45) NULL,
   `preference` INT NULL,
   `food_type` INT NULL,
@@ -91,6 +97,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `my_fridge`.`ingredients`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`ingredients` ;
+
 CREATE TABLE IF NOT EXISTS `my_fridge`.`ingredients` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
@@ -104,6 +112,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `my_fridge`.`ingrediente_receta`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`ingrediente_receta` ;
+
 CREATE TABLE IF NOT EXISTS `my_fridge`.`ingrediente_receta` (
   `ingredient_id` INT NOT NULL,
   `recipe_id` INT NOT NULL,
@@ -127,6 +137,8 @@ USE `gamesshop` ;
 -- -----------------------------------------------------
 -- Table `gamesshop`.`users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `gamesshop`.`users` ;
+
 CREATE TABLE IF NOT EXISTS `gamesshop`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(155) NULL DEFAULT NULL,
@@ -147,6 +159,8 @@ COMMENT = '					';
 -- -----------------------------------------------------
 -- Table `gamesshop`.`juegos`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `gamesshop`.`juegos` ;
+
 CREATE TABLE IF NOT EXISTS `gamesshop`.`juegos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(155) NULL DEFAULT NULL,
@@ -168,6 +182,8 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `gamesshop`.`compras`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `gamesshop`.`compras` ;
+
 CREATE TABLE IF NOT EXISTS `gamesshop`.`compras` (
   `juego_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -189,6 +205,8 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `gamesshop`.`favoritos`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `gamesshop`.`favoritos` ;
+
 CREATE TABLE IF NOT EXISTS `gamesshop`.`favoritos` (
   `user_id` INT NOT NULL,
   `juego_id` INT NOT NULL,
@@ -209,6 +227,8 @@ COLLATE = utf8_estonian_ci;
 -- -----------------------------------------------------
 -- Table `gamesshop`.`reseñas`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `gamesshop`.`reseñas` ;
+
 CREATE TABLE IF NOT EXISTS `gamesshop`.`reseñas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` TEXT NULL DEFAULT NULL,
