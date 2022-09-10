@@ -27,6 +27,9 @@
             <h1>Añade una nueva receta!!</h1>
             <form action="/create_recipe" method="post">
                 <input type="hidden" value="{{user.id}}" name="user_id">
+                <input type="hidden" value="preferencia" name="preference">
+                <input type="hidden" value="{{user.id}}" name="category_id">  <!--ojo quitar este despues de crear el input categoria -->
+                
                 <div class="col-6">
                     <div class="form-group">
                         <label for="name">Nombre</label>
@@ -64,6 +67,8 @@
                     </div>
                     <input type="submit" value="crear" class="btn btn-success">
                 </div>
+
+                <!-- ojo poner aqui un category para escoger la categoria por medio de jinja como cuando hacemos el formulario editar -->
             </form>
         </div>
     </div>

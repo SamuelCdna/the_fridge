@@ -30,6 +30,9 @@ def create_recipe():
     Recipes.save(request.form)
     return redirect('/dashboard')
 
+
+    
+
 @app.route('/view/reseña/<int:id>') 
 def mostrar_receta(id):
     if 'user_id' not in session:  
