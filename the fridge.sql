@@ -44,6 +44,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `my_fridge`.`categorys`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `my_fridge`.`categorys` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `my_fridge`.`recipes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `my_fridge`.`recipes` (
@@ -56,14 +68,21 @@ CREATE TABLE IF NOT EXISTS `my_fridge`.`recipes` (
   `recipescol` VARCHAR(45) NULL,
   `description` TEXT(1000) NULL,
   `preparation` TEXT(3000) NULL,
-  `user_id` INT NOT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` INT NOT NULL,
+  `category_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_recipes_users_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_recipes_categorys1_idx` (`category_id` ASC) VISIBLE,
   CONSTRAINT `fk_recipes_users`
     FOREIGN KEY (`user_id`)
     REFERENCES `my_fridge`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_recipes_categorys1`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `my_fridge`.`categorys` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -79,25 +98,6 @@ CREATE TABLE IF NOT EXISTS `my_fridge`.`ingredients` (
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `my_fridge`.`categorys`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `my_fridge`.`categorys` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(150) NULL,
-  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `recipes_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `recipes_id`),
-  INDEX `fk_categorys_recipes1_idx` (`recipes_id` ASC) VISIBLE,
-  CONSTRAINT `fk_categorys_recipes1`
-    FOREIGN KEY (`recipes_id`)
-    REFERENCES `my_fridge`.`recipes` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
