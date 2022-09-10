@@ -15,6 +15,7 @@ class Recipes:
         self.updated_at= data['updated_at']
         self.user_id = data['user_id']
         self.category_id = data['category_id']
+        
     
     @staticmethod
     def valida_receta(formulario):
@@ -31,6 +32,8 @@ class Recipes:
         if len(formulario['preparation']) < 3:
             flash('la preparacion no puede estar vacia', 'receta')
             es_valido = False
+        
+        return es_valido
 
 
 
@@ -68,3 +71,13 @@ class Recipes:
         query = "DELETE FROM recipes WHERE id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
+
+    @classmethod
+    def searchRecipiesByIngredients(cls, filter):
+        query = F"SELECT R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where I.name like '{filter}'"
+        result = connectToMySQL('my_fridge').query_db(query)
+        recipes = []
+        for recipe in result:
+            #recipe = diccionario
+            recipes.append(cls(recipe))
+        return recipes

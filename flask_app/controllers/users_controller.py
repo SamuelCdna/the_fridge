@@ -1,9 +1,11 @@
 from flask import render_template, redirect, session, request, flash
 from flask_app import app
+from flask_app.controllers import users_controller ,recipes_controller, ingredients_controller
 
 #Importación del modelo
 from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
+from flask_app.models.category import Category 
 #Importación BCrypt
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)

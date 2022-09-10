@@ -31,20 +31,7 @@
                     </div>
                 </div> 
                 <div class="col-8">
-                    <!-- <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"></div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"></div>
-                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-                    </div>
-                </div>
 
-                <div class="col_2">
-                    <a href="#" class="btn btn-outline-danger">ADMINISTRAR RECETAS</a>
-                    <hr>
-                    <a href="#" class="btn btn-outline-danger">ADMINISTRAR INGREDIENTES</a>
-                    <hr>
-                    <a href="#" class="btn btn-outline-danger">ADMINISTRAR CATEGORIAS</a> -->
 
                     <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">Tus publicaciones pendientes por programar</div>
@@ -58,9 +45,43 @@
                     
         
                 <div class="col-3">
-                    <a href="#" class="btn btn-outline-danger m-2 mt-4">ADMINISTRAR RECETAS</a>
-                    <a href="#" class="btn btn-outline-danger m-2">ADMINISTRAR INGREDIENTES</a>
-                    <a href="#" class="btn btn-outline-danger m-2">ADMINISTRAR CATEGORIAS</a>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-danger dropdown-toggle m-2 mt-4" data-bs-toggle="dropdown" aria-expanded="false">
+                            ADMINISTRAR RECETAS
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="Creceta">Crear Receta</a></li>
+                            <li><a class="dropdown-item" href="#">Editar receta</a></li>
+                            <li><a class="dropdown-item" href="#">Ver receta</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-danger dropdown-toggle m-2 mt-4" data-bs-toggle="dropdown" aria-expanded="false">
+                            ADMINISTRAR INGREDIENTES
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="">Crear Receta</a></li>
+                            <li><a class="dropdown-item" href="#">Editar receta</a></li>
+                            <li><a class="dropdown-item" href="#">Ver receta</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-danger dropdown-toggle m-2 mt-4" data-bs-toggle="dropdown" aria-expanded="false">
+                            ADMINISTRAR CATEGORIAS
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Creceta">Crear Receta</a></li>
+
+                            <a class="dropdown-item" href="#">Editar receta</a>
+                            <a class="dropdown-item" href="#">Ver receta</a>
+                        </ul>
+                    </div>
+
+
+
+                    </div>
                 </div>
             
 
