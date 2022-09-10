@@ -17,6 +17,7 @@ def Creceta():
     user = User.get_by_id(formulario)
 
     return render_template('create_recipe.html', user=user)
+    
 
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():

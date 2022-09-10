@@ -19,15 +19,19 @@ def registro():
 @app.route('/registrate', methods=['POST'])
 def registrate():
     #Validar la información ingresada
+    '''
     if not User.valida_usuario(request.form):
         return redirect('/registro')
-
+    '''
     pwd = bcrypt.generate_password_hash(request.form['password']) #Encriptamos el password del usuario
 
     formulario = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
+        "level": request.form['level'],
+        "level": request.form['level'],
+        "permisions": 'user',
         "password": pwd
     }
 
@@ -61,16 +65,26 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    if 'user_id' not in session:
-        return redirect('/')
 
     formulario = {
         'id': session['user_id']
     }
+    print(formulario)
+    if 'user_id' not in session:
+        return redirect('/')
 
     user = User.get_by_id(formulario)
     recipes = Recipes.get_all()
-    return render_template('dashboard.html', user=user, recipes=recipes)
+
+    session['user_id'] = user.id
+    
+    if user.id == 1 :
+        return render_template('admi_dashboard.html', user=user, recipes=recipes)
+    else:
+        return render_template('dashboard.html', user=user, recipes=recipes)
+
+
+
 
 @app.route('/logout')
 def logout():

@@ -92,5 +92,6 @@ class User:
         #formulario = {id: 4}
         query = "SELECT * FROM users WHERE id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario) #RECIBIMOS UNA LISTA
+        print(result)
         user = cls(result[0]) #creamos una instancia de usuario
         return user

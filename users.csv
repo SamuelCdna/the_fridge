@@ -1,0 +1,2 @@
+id,first_name,last_name,email,password,level,permisions,created_at,updated_at
+1,Grupo,Cuatro,g4@gmail.com,$2b$12$8tLKLGE0lGN09EWqmBhvFes0dAFSobgXHWfAae/5SjhoO/ZDSciGW,NULL,NULL,"2022-09-09 23:14:22","2022-09-09 23:14:22"

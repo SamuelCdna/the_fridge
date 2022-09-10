@@ -9,7 +9,6 @@ class Recipes:
         self.level_recipe = data['level_recipe']
         self.preference = data['preference']
         self.food_type = data['food_type']
-        self.recipescol = data['recipescol']
         self.description = data['description']
         self.preparation = data['preparation']
         self.created_at= data['created_at']
@@ -37,7 +36,7 @@ class Recipes:
 
     @classmethod 
     def save(cls, formulario):
-        query = "INSERT INTO recipes (name, time_cook, level_recipe, food_type, description, preparation, user_id ,category_id) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s, %(food_type)s,  %(description)s, %(preparation)s, %(user_id)s , %(category_id)s)"
+        query = "INSERT INTO recipes (name, time_cook, level_recipe, food_type, description, preparation, user_id ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s, %(food_type)s,  %(description)s, %(preparation)s, %(user_id)s )"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
     

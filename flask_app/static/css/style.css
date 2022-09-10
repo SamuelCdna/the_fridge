@@ -1,10 +1,10 @@
-body{
-    /* background-image: url("../img/imagen_fondo.jpg") !important;
+/* body{
+    background-image: url("../img/imagen_fondo.jpg") !important;
     background-repeat: no-repeat !important;
-    background-size: cover!important; */
+    background-size: cover!important;
 
     
-}
+} */
 
 * {
 	padding: 0;
@@ -229,12 +229,12 @@ p {
     color: black;
 }
 
-/* .container {
+.contenedor {
     padding: 20px;
     max-width: 600px;
     margin: 40px auto;
     text-align: center;
-} */
+}
 
 button {
     cursor: pointer;
@@ -281,17 +281,17 @@ dialog button:hover {
     box-shadow: 8px 8px 0 #321c3b;
 }
 
-/* .row{
+.row_1{
     
     flex-direction: column;
     justify-content: space-between;
-} */
+}
 .col_1{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.main{
+.main_1{
 	display: flex;
 	flex-direction: row;
 	
