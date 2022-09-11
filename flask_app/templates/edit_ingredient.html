@@ -8,13 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <a href="/dashboard" class="btn btn-primary">Home</a>
-        
-    <form action="/save_ingredients" method="post"> 
+
+    <form action="/update_ingredients" method="POST"> 
         <div class="form-group">
+            <input type="hidden" value="{{ingredient.id}}" name="id">
             <label for="name" class="titleR">Ingrediente:</label>
-            <input type="text" id="name" name="name"class="form-control">
+            <input type="text" id="name" name="name"class="form-control" value="{{ingredient.name}}">
         </div>
-        <input type="submit" value="Crear" class="btn btn-success">
+        <input type="submit" value="Guardar" class="btn btn-success">
+        <a href="/ingredients" class="btn btn-primary">Cancelar</a>
 </body>
 </html>

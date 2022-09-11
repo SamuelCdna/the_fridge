@@ -7,7 +7,7 @@ class Recipes:
         self.name = data['name']
         self.time_cook = data['time_cook']
         self.level_recipe = data['level_recipe']
-        self.id = data['id']
+        
         self.description = data['description']
         self.preparation = data['preparation']
         self.created_at= data['created_at']
@@ -54,11 +54,11 @@ class Recipes:
         return recipes
 
     @classmethod
-    def get_by_id(cls, formulario): #formulario = {id: 1} "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
-        query = "SELECT * FROM recipes WHERE id = %(id)s;"
+    def get_by_id(cls, formulario): #formulario = {id: 1}
+        query = "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
         result = connectToMySQL('my_fridge').query_db(query, formulario) #Lista de diccionarios
-        recipe = cls(result[0])
-        return recipe
+        reseña = cls(result[0])
+        return reseña
 
     @classmethod
     def update(cls, formulario):
@@ -74,7 +74,13 @@ class Recipes:
 
     @classmethod
     def searchRecipiesByIngredients(cls, filter):
-        query = F"SELECT R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where I.name like '{filter}'"
+        condition = ""
+        for item in filter.split(', '):
+            if condition == "":
+                condition = F"I.name like '%{item}%'"
+            else:
+                condition += F" or I.name like '%{item}%'"
+        query = F"SELECT R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where {condition}"
         result = connectToMySQL('my_fridge').query_db(query)
         recipes = []
         for recipe in result:
@@ -87,5 +93,5 @@ class Recipes:
         query = "SELECT * FROM recipes WHERE category_id = %(category_id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         print(result)
-        producto= cls(result[0]) #creamos una instancia de producto
-        return recipes
+        recipe = cls(result[0]) #creamos una instancia de recipes
+        return recipe

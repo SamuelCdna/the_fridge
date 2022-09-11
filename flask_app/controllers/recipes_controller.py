@@ -5,6 +5,7 @@ from flask_app import app
 from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
+from flask_app.models.ingredients import Ingredient
 from flask_app.controllers import users_controller, recipes_controller, ingredients_controller, category_controller
 
 @app.route('/Creceta')
@@ -66,63 +67,25 @@ def ingredients():
     formulario = {
         'id': session['user_id']
     }
+    return render_template('ingredients.html', user= User.get_by_id(formulario), recipies=[], ingredients = Ingredient.get_all())
 
-    user = User.get_by_id(formulario)
-
-    return render_template('ingredients.html', user=user, recipies=[])
-
-@app.route('/view_recipes') 
-def view_recipes():
+@app.route('/view/reseña/<int:id>') 
+def mostrar_receta(id):
     if 'user_id' not in session:  
         return redirect('/')
     formulario = {
         "id": session['user_id']
     }
     user = User.get_by_id(formulario) 
-    recipes = Recipes.get_all()
-    return render_template('view_recipesadmi.html', user=user, recipes=recipes)
-
-
-@app.route('/edit/recipe/<int:id>') 
-def edit_receta(id):
-    if 'user_id' not in session: 
-        return redirect('/')
-    formulario = {
-        'id': session['user_id']
-    }
-    
-    user = User.get_by_id(formulario) 
-    formulario_receta = {"id": id}
-
-    receta = Recipes.get_by_id(formulario_receta)
-    categorias= Category.get_all()
-
-    return render_template('edit_receta.html', user=user, receta=receta, categorias=categorias)
-
-# @app.route('/edit/recipe')
-# def edit_reci():
-
-    if 'user_id' not in session:  
-        return redirect('/')
-
-    formulario = {
-        "id": session['user_id']
-    }
-
-    id = id_recipe
-
-    user = User.get_by_id(formulario) 
-    categorias= Category.get_all()
-    recipe = Recipes.get_by_id(id)
-
-    return render_template('all_recipes.html', user=user, recipe=recipe, categorias=categorias)
+    formulario_receta = { "id": id }
+    recetas = Recipes.get_by_id(formulario_receta)
+    return render_template('mostrar_receta.html', user=user, recetas=recetas)
 
 @app.route('/search_ingredients', methods=['POST'])
 def SearchIngredients():
     if 'user_id' not in session: 
         return redirect('/')
-    recipes = Recipes.searchRecipiesByIngredients(request.form["search"])
-    return render_template('ingredients.html', recipes=recipes)
+    return render_template('ingredients.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
 
 
 

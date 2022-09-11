@@ -1,6 +1,6 @@
 from flask import render_template, redirect, session, request, flash
 from flask_app import app
-from flask_app.controllers import users_controller ,recipes_controller, ingredients_controller,category_controller
+from flask_app.controllers import users_controller ,recipes_controller, ingredients_controller, category_controller
 
 #Importación del modelo
 from flask_app.models.users import User
@@ -61,12 +61,12 @@ def login():
 
     session['user_id'] = user.id
 
-    return redirect('/dashboard/0')
+    return redirect('/dashboard')
 
 
 
-@app.route('/dashboard/<int:category>')
-def dashboard(category):
+@app.route('/dashboard')
+def dashboard():
 
     formulario = {
         'id': session['user_id']
@@ -79,25 +79,12 @@ def dashboard(category):
     recipes = Recipes.get_all()
 
     session['user_id'] = user.id
-
     
-
     
     if user.id == 1 :
         return render_template('admi_dashboard.html', user=user, recipes=recipes)
-
     else:
-        if category == 0:
-            categories= Category.get_all()
-
-        else:
-
-            form_category = {
-                "category" : category
-            }
-            categories= Category.get_by_id(form_category)
-    
-    return render_template('dashboard.html', user=user, recipes=recipes, categories = categories)
+        return render_template('dashboard.html', user=user, recipes=recipes)
 
 
 

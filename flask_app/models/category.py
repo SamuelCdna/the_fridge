@@ -38,15 +38,6 @@ class Category:
         return categorias
 
     @classmethod
-    def get_by_id(cls, formulario): 
-        query = "SELECT * FROM categorys WHERE id = %(id)s;"
-        result = connectToMySQL('my_fridge').query_db(query, formulario) #Lista de diccionarios
-        category = cls(result[0])
-        return category
-
-
-
-    @classmethod
     def acces(cls):
         query = "SELECT * FROM productos WHERE categoria LIKE 'accesorios'"
         results = connectToMySQL('proyecto_pañalera').query_db(query) #Lista de diccionarios 

@@ -26,8 +26,8 @@ class Ingredient:
 
     @classmethod 
     def save(cls, formulario):
-        query = "INSERT INTO ingredients (name, amount) VALUES (%(name)s, %(amount)s)"
-        result = connectToMySQL('my_fridge').query_db(query, formulario)
+        query = "INSERT INTO ingredients (name, amount) VALUES (%(name)s, 0)"
+        result = connectToMySQL('my_fridge').query_db(query, formulario) #TODO: Se debe validar si la cantidad es necesaria en este punto o no
         return result
 
     @classmethod
@@ -39,6 +39,24 @@ class Ingredient:
             #recipe = diccionario
             ingredientes.append(cls(ingrediente)) 
         return ingredientes
+
+    @classmethod
+    def get_by_id(cls, idIngredient):
+        query = F"SELECT * FROM ingredients I WHERE I.id = '{idIngredient}'"
+        result = connectToMySQL('my_fridge').query_db(query)
+        ingredient = cls(result[0])
+        return ingredient
+
+    @classmethod
+    def update(cls, formulario):
+        query = "UPDATE ingredients SET name=%(name)s WHERE id = %(id)s"
+        connectToMySQL('my_fridge').query_db(query, formulario)
+        
+    @classmethod
+    def delete(cls, ingredientId):
+        query = F"DELETE FROM ingredients WHERE id ='{ingredientId}'"
+        connectToMySQL('my_fridge').query_db(query)
+
 
         #PENDIENTES
 
