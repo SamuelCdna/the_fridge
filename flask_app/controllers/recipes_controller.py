@@ -5,6 +5,7 @@ from flask_app import app
 from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
+from flask_app.models.ingredients import Ingredient
 from flask_app.controllers import users_controller, recipes_controller, ingredients_controller, category_controller
 
 @app.route('/Creceta')
@@ -28,7 +29,7 @@ def Creceta():
 
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
-    print('hola')
+    
     print(request.form)
 
     if 'user_id' not in session: 
@@ -58,18 +59,18 @@ def Ccategorys():
 
     return render_template('category.html', user=user)
 
-@app.route('/ingredients')
-def ingredients():
-    if 'user_id' not in session:
-        return redirect('/')
+# @app.route('/ingredients')
+# def ingredients():
+#     if 'user_id' not in session:
+#         return redirect('/')
 
-    formulario = {
-        'id': session['user_id']
-    }
+#     formulario = {
+#         'id': session['user_id']
+#     }
 
-    user = User.get_by_id(formulario)
+#     user = User.get_by_id(formulario)
 
-    return render_template('ingredients.html', user=user, recipies=[])
+#     return render_template('ingredients.html', user=user, recipies=[])
 
 @app.route('/view_recipes') 
 def view_recipes():
@@ -130,12 +131,15 @@ def update_reseña():
 
     return render_template('all_recipes.html', user=user, recipe=recipe, categorias=categorias)
 
+@app.route('/search_ingredients1', methods=['POST'])
+def SearchIngredients1():
+    if 'user_id' not in session: 
+        return redirect('/')
+    return render_template('ingredients.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
+
+
 @app.route('/search_ingredients', methods=['POST'])
 def SearchIngredients():
     if 'user_id' not in session: 
         return redirect('/')
-    recipes = Recipes.searchRecipiesByIngredients(request.form["search"])
-    return render_template('ingredients.html', recipes=recipes)
-
-
-
+    return render_template('ingredients.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())

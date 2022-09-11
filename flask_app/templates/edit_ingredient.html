@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredientes</title>
+</head>
+<body>
+    <div class="container">
+
+    <form action="/update_ingredients" method="POST"> 
+        <div class="form-group">
+            <input type="hidden" value="{{ingredient.id}}" name="id">
+            <label for="name" class="titleR">Ingrediente:</label>
+            <input type="text" id="name" name="name"class="form-control" value="{{ingredient.name}}">
+        </div>
+        <input type="submit" value="Guardar" class="btn btn-success">
+        <a href="/ingredients" class="btn btn-primary">Cancelar</a>
+</body>
+</html>

@@ -36,6 +36,24 @@ class Ingredient:
             print(ingredientes)
         return ingredientes
 
+    @classmethod
+    def get_by_id(cls, idIngredient):
+        query = F"SELECT * FROM ingredients I WHERE I.id = '{idIngredient}'"
+        result = connectToMySQL('my_fridge').query_db(query)
+        ingredient = cls(result[0])
+        return ingredient
+
+    @classmethod
+    def update(cls, formulario):
+        query = "UPDATE ingredients SET name=%(name)s WHERE id = %(id)s"
+        connectToMySQL('my_fridge').query_db(query, formulario)
+        
+    @classmethod
+    def delete(cls, ingredientId):
+        query = F"DELETE FROM ingredients WHERE id ='{ingredientId}'"
+        connectToMySQL('my_fridge').query_db(query)
+
+
         #PENDIENTES
 
         #left join acorde con lo que tengan los otros compañeros 
