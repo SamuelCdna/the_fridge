@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingredientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
-    <div class="container">
-        <a href="/dashboard" class="btn btn-primary">Home</a>
-        
-    <form action="/create_ingredients" method="post"> 
-        <div class="form-group">
-            <label for="name" class="titleR">Ingredientes:</label>
-            <input type="text" id="name" name="name"class="form-control">
+
+    <div class="container mt-3">
+
+        <div class="row ">
+            <h1>Ingresa nuevos ingredientes para tus recetas</h1>
+
+            <div class=" col-6 border p-5 mt-5">
+
+                <form action="/save_ingredients" method="post" class=" ">
+                    <!-- <div class="form-group">
+                    <label for="name" class="titleR">Ingredientes:</label>
+                    <input type="text" id="name" name="name"class="form-control">
+                </div> -->
+
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nombre de ingrediente:</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                        <!-- <label for="img" class="form-label">Ingresa nombre icono:</label>
+                    <input type="text" class="form-control" id="img" name="img"> -->
+                    </div>
+
+                    <input type="submit" value="crear" class="btn btn-success mt-2">
+                </form>
+            </div>
+
+            <div class="col-6  text-end mt-5">
+
+                <a href="/dashboard/0" class="btn btn-primary">Home</a>
+
+            </div>
+
         </div>
-        <input type="submit" value="crear" class="btn btn-success">
+
+    </div>
+
+
+
 </body>
+
 </html>

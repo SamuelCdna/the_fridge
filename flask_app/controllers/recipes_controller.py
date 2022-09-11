@@ -99,6 +99,19 @@ def edit_receta(id):
 
     return render_template('edit_receta.html', user=user, receta=receta, categorias=categorias)
 
+@app.route('/update/recipe', methods=['POST'])
+def update_reseña():
+    if 'user_id' not in session: 
+        return redirect('/')
+
+    if not Recipes.valida_receta(request.form): 
+        return redirect('/edit/recipe/'+ request.form['id'])
+
+    Recipes.update(request.form)
+    return redirect('/view_recipes')
+
+
+
 # @app.route('/edit/recipe')
 # def edit_reci():
 

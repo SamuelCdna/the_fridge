@@ -1,2 +1,3 @@
 id,first_name,last_name,email,password,level,permisions,created_at,updated_at
-1,Grupo,Cuatro,g4@gmail.com,$2b$12$8tLKLGE0lGN09EWqmBhvFes0dAFSobgXHWfAae/5SjhoO/ZDSciGW,NULL,NULL,"2022-09-09 23:14:22","2022-09-09 23:14:22"
+1,Grupo,Cuatro,g4@gmail.com,$2b$12$8tLKLGE0lGN09EWqmBhvFes0dAFSobgXHWfAae/5SjhoO/ZDSciGW,1,admi,"2022-09-09 23:14:22","2022-09-09 23:39:18"
+2,pepito,perez,pepo@perez.com,$2b$12$PQctgnxNeNzLmf9C4mMaqe8twoafzIRy3Eu8xdIsQ7H3n9EYpCvSm,NULL,user,"2022-09-09 23:55:41","2022-09-10 15:21:09"

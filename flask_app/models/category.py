@@ -28,7 +28,7 @@ class Category:
         
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM categorys;"
+        query = "SELECT * FROM my_fridge.categorys ORDER by name ASC;"
         results = connectToMySQL('my_fridge').query_db(query) #Lista de diccionarios 
         categorias = []
         for categoria in results:

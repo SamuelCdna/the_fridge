@@ -42,14 +42,12 @@ def registrate():
 
     session['user_id'] = id
 
-    return redirect('/dashboard')
+    return redirect('/dashboard/0')
 
 @app.route('/login', methods=['POST'])
 def login():
-    #Verificar que el email EXISTA
-    #request.form RECIBIMOS DE HTML
-    #request.form = {email: elena@cd.com, password: 123}
-    user = User.get_by_email(request.form) #Recibiendo una instancia de usuario o Falso
+
+    user = User.get_by_email(request.form) 
 
     if not user:
         flash('E-mail no encontrado', 'login')
@@ -66,26 +64,22 @@ def login():
 
 
 @app.route('/dashboard/<int:category>')
-def dashboard(category):
+def dashboarduser(category):
 
     formulario = {
         'id': session['user_id']
     }
-    # print(formulario)
     if 'user_id' not in session:
         return redirect('/')
 
     user = User.get_by_id(formulario)
     recipes = Recipes.get_all()
+    categories= Category.get_all()
 
     session['user_id'] = user.id
 
-    
-
-    
     if user.id == 1 :
-        return render_template('admi_dashboard.html', user=user, recipes=recipes)
-
+        return render_template('admi_dashboard.html', user=user, recipes=recipes, categories = categories)
     else:
         if category == 0:
             categories= Category.get_all()
@@ -100,6 +94,20 @@ def dashboard(category):
     return render_template('dashboard.html', user=user, recipes=recipes, categories = categories)
 
 
+# @app.route('/dashboard')#dashboard del administrador
+# def dashboard():
+
+#     formulario = {
+#         'id': session['user_id']
+#     }
+
+#     if 'user_id' not in session:
+#         return redirect('/')
+
+#     user = User.get_by_id(formulario)
+#     recipes = Recipes.get_all()
+
+#     return render_template('admi_dashboard.html', user=user, recipes=recipes)
 
 
 @app.route('/logout')

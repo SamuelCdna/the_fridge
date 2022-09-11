@@ -89,9 +89,8 @@ class User:
     
     @classmethod
     def get_by_id(cls, formulario):
-        #formulario = {id: 4}
         query = "SELECT * FROM users WHERE id = %(id)s"
-        result = connectToMySQL('my_fridge').query_db(query, formulario) #RECIBIMOS UNA LISTA
-        # print(result)
+        result = connectToMySQL('my_fridge').query_db(query, formulario) 
+        print(result)
         user = cls(result[0]) #creamos una instancia de usuario
         return user

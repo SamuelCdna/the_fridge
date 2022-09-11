@@ -24,4 +24,4 @@ def save_category():
 
     Category.save(request.form)
 
-    return redirect('/dashboard')
+    return redirect('/dashboard/0')

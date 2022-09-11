@@ -49,7 +49,6 @@ class Recipes:
         results = connectToMySQL('my_fridge').query_db(query) #Lista de diccionarios 
         recipes = []
         for recipe in results:
-            #recipe = diccionario
             recipes.append(cls(recipe)) #1.- cls(recipe) me crea una instancia en base al diccionario, 2.- Agrego la instancia a mi lista de recetas
         return recipes
 
@@ -62,7 +61,7 @@ class Recipes:
 
     @classmethod
     def update(cls, formulario):
-        query = "UPDATE reseñas SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , description=%(description)s , preparation=%(preparation)s  WHERE id = %(id)s"
+        query = "UPDATE recipes SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , description=%(description)s , preparation=%(preparation)s, img=%(img)s WHERE id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
 

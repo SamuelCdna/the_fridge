@@ -25,6 +25,36 @@ def save_ingredients():
 
     Ingredient.save(request.form)
 
-    return redirect('/dashboard')
+    return redirect('/dashboard/0')
+
+@app.route('/view/ingredients') 
+def view_ingredients():
+    if 'user_id' not in session:  
+        return redirect('/')
+    formulario = {
+        "id": session['user_id']
+    }
+    user = User.get_by_id(formulario) 
+    ingredients = Ingredient.get_all()
+
+    return render_template('view_ingredients.html', User=User, ingredients = ingredients)
+
+
+@app.route('/edit/ingredients/<int:ingredient_id>') 
+def edit_ingredients(ingredient_id):
+
+    if 'user_id' not in session:  
+        return redirect('/')
+
+    formulario = {
+        "id": session['user_id']
+    }
+
+    id = ingredient_id
+
+    user = User.get_by_id(formulario) 
+    ingredients = Ingredient.get_all(id)
+
+    return render_template('edit_ingredients.html', User=User, ingredients = ingredients)
 
 
