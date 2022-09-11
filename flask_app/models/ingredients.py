@@ -33,7 +33,7 @@ class Ingredient:
         ingredientes = []
         for ingrediente in results:
             ingredientes.append(cls(ingrediente)) 
-            print(ingredientes)
+            
         return ingredientes
 
     @classmethod

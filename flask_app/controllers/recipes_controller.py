@@ -30,7 +30,7 @@ def Creceta():
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
     
-    print(request.form)
+    
 
     if 'user_id' not in session: 
         return redirect('/')
@@ -40,7 +40,7 @@ def create_recipe():
 
     Recipes.save(request.form)
     
-    return redirect('/dashboard')
+    return redirect('/dashboard/0')
 
 
 
@@ -96,9 +96,9 @@ def edit_receta(id):
     formulario_receta = {"id": id}
 
     receta = Recipes.get_by_id(formulario_receta)
-    categorias= Category.get_all()
+    categories= Category.get_all()
 
-    return render_template('edit_receta.html', user=user, receta=receta, categorias=categorias)
+    return render_template('edit_receta.html', user=user, receta=receta, categories = categories)
 
 @app.route('/update/recipe', methods=['POST'])
 def update_reseña():
@@ -113,29 +113,8 @@ def update_reseña():
 
 
 
-# @app.route('/edit/recipe')
-# def edit_reci():
 
-    if 'user_id' not in session:  
-        return redirect('/')
 
-    formulario = {
-        "id": session['user_id']
-    }
-
-    id = id_recipe
-
-    user = User.get_by_id(formulario) 
-    categorias= Category.get_all()
-    recipe = Recipes.get_by_id(id)
-
-    return render_template('all_recipes.html', user=user, recipe=recipe, categorias=categorias)
-
-@app.route('/search_ingredients1', methods=['POST'])
-def SearchIngredients1():
-    if 'user_id' not in session: 
-        return redirect('/')
-    return render_template('ingredients.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
 
 
 @app.route('/search_ingredients', methods=['POST'])

@@ -10,8 +10,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
 </head>
 <body>
+    <nav class="navbar navbar-ligth  easy_color " >
+        <div class="container-fluid">
+            <p></p>
+            <h1 class="text-white">Easy Cock</h1>
+
+            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+            
+        </div>
+    </nav>
+
     <div class="container">
-        <a href="/dashboard/0" class="btn btn-primary">Home</a>
+        
     {% with messages = get_flashed_messages(category_filter=['receta']) %}
         {% if messages %}
 
@@ -24,11 +34,12 @@
         {% endif %}
     {% endwith %}
         <div class="row">
-            <h1>Añade una nueva receta!!</h1>
-            <form action="/create_recipe" method="post">
-                <input type="hidden" value="{{user.id}}" name="user_id">
-             
-                <div class="col-6">
+            
+                <div class="col-7 mt-3">
+                    <h1>Añade una nueva receta!!</h1>
+                    <form action="/create_recipe" method="post">
+                        <input type="hidden" value="{{user.id}}" name="user_id">
+                
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name" class="form-control">
@@ -78,10 +89,22 @@
                         </select>
                     </div>
                     <input type="submit" value="crear" class="btn btn-success">
+
+                </form>
+                </div>
+                
+                <div class="col-3">
+
                 </div>
 
                 
-            </form>
+
+            <div class="col-2 text-end">
+                <a href="/dashboard/0" class="btn btn-primary mt-3">Home</a>
+                <a href="/view_recipes" class="btn btn-primary mt-3">Ver recetas</a>
+            </div>
+
+            
         </div>
     </div>
 

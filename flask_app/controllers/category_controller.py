@@ -25,3 +25,13 @@ def save_category():
     Category.save(request.form)
 
     return redirect('/dashboard/0')
+
+
+@app.route('/view/category')
+def view_category():
+    if 'user_id' not in session: 
+        return redirect('/')
+
+    categories = Category.get_all()
+
+    return render_template('view_category.html', categories = categories)

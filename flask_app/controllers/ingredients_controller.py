@@ -24,7 +24,7 @@ def save_ingredients():
 
     Ingredient.save(request.form)
 
-    return redirect('/ingredients')
+    return redirect('/view/ingredients')
 
 @app.route('/view/ingredients') 
 def view_ingredients():
@@ -54,7 +54,7 @@ def update_ingredients():
     if not Ingredient.valida_ingredientes(request.form): 
         return redirect('/create_ingredients')
     Ingredient.update(request.form)
-    return redirect('/ingredients')
+    return redirect('/view/ingredients')
 
 @app.route('/delete_ingredient/<int:id>') #a través de la URL recibimos el ID de la receta
 def delete_ingredient(id):
@@ -62,7 +62,7 @@ def delete_ingredient(id):
         return redirect('/')
     Ingredient.delete(id)
 
-    return redirect('/dashboard/0')
+    return redirect('/view/ingredients')
 
 
 

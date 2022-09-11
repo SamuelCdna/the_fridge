@@ -1,6 +1,7 @@
-id,name,time_cook,level_recipe,description,preparation,created_at,updated_at,user_id,category_id,img
-1,Tacos,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:14:39","2022-09-10 13:14:39",1,2,https://i.pinimg.com/564x/26/88/6f/26886f1d3abfc52a1e22bb4af3cb812b.jpg
-2,Tacos,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:15:21","2022-09-10 14:13:14",1,2,https://i.pinimg.com/736x/f5/20/10/f52010f1acafbe3969cc567c41d44865.jpg
-3,Tacos,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:16:03","2022-09-10 14:13:14",1,2,https://i.pinimg.com/564x/a4/ec/49/a4ec498f22379e930c63678d0e507994.jpg
-4,"Brochetas de camaron",160,3,"brochetas con piña y camaron","empala los ingredientes y los pone a asar","2022-09-10 13:32:54","2022-09-10 13:32:54",1,5,https://i.pinimg.com/564x/6f/8d/41/6f8d41c3905123845e3f1398dbe8367f.jpg
-5,"Ensalada fresca de pollo ",80,1,"Ensalada con pollo, maiz y nueces","pica todo, cocina el pollo y lo echa a un bowl y le adiciona vinagreta","2022-09-10 13:38:48","2022-09-10 13:38:48",1,4,https://i.pinimg.com/564x/f5/09/44/f509447f75a554d4249a21f48c5b792a.jpg
+id,name,time_cook,level_recipe,description,preparation,created_at,updated_at,img,user_id,category_id
+1,Tacada,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:14:39","2022-09-11 00:55:28",https://i.pinimg.com/564x/04/c6/a0/04c6a0d2dbc042239d3a726be0dc8e19.jpg,1,2
+2,"Tacos de carnitas",30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:15:21","2022-09-10 22:34:57",https://i.pinimg.com/736x/f5/20/10/f52010f1acafbe3969cc567c41d44865.jpg,1,2
+3,Tacos,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:16:03","2022-09-10 14:13:14",https://i.pinimg.com/564x/a4/ec/49/a4ec498f22379e930c63678d0e507994.jpg,1,2
+4,"Brochetas de camaron",160,3,"brochetas con piÃ±a y camaron","empala los ingredientes y los pone a asar","2022-09-10 13:32:54","2022-09-10 13:32:54",https://i.pinimg.com/564x/6f/8d/41/6f8d41c3905123845e3f1398dbe8367f.jpg,1,5
+5,"Ensalada fresca de pollo ",80,1,"Ensalada con pollo, maiz y nueces","pica todo, cocina el pollo y lo echa a un bowl y le adiciona vinagreta","2022-09-10 13:38:48","2022-09-10 13:38:48",https://i.pinimg.com/564x/f5/09/44/f509447f75a554d4249a21f48c5b792a.jpg,1,4
+6,borrar,50,1,defrgthyjuk,dsertyu,"2022-09-11 02:50:40","2022-09-11 02:50:40",https://i.pinimg.com/736x/02/3c/8e/023c8ee9d02c66dd8923947caf43cae7.jpg,1,3

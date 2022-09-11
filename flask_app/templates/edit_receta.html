@@ -10,8 +10,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
 </head>
 <body>
+    <nav class="navbar navbar-ligth  easy_color " >
+        <div class="container-fluid">
+            <p></p>
+            <h1 class="text-white">Easy Cock</h1>
+
+            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+            
+        </div>
+    </nav>
+
     <div class="container">
-        <a href="/dashboard/0" class="btn btn-primary">Home</a>
+        
     {% with messages = get_flashed_messages(category_filter=['receta']) %}
         {% if messages %}
 
@@ -80,7 +90,7 @@
                     
         </div>
 
-        <div class="col-5">
+        <div class="col-4">
             <div class="">
                 <div class="form-group">
                     <label for="photo_ud">Ingresa la url y obten la vista previa de la imagen</label>
@@ -89,6 +99,10 @@
                 <img src="{{receta.img}}"  class=" mx-2  " width="200" id="prevImage" alt="vista previa imagen" />
                 
             </div>
+        </div>
+        <div class="col-2 text-end">
+            <a href="/dashboard/0" class="btn btn-primary">Home</a>
+            <a href="/view_recipes" class="btn btn-primary mt-3">Ver recetas</a>
         </div>
             
         </div>

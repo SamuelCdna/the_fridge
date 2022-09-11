@@ -299,3 +299,11 @@ dialog button:hover {
 .avatar{
 	width: 50px;
 }
+
+.easy_color{
+	background-color: rgb(254, 166, 32);
+}
+
+#easy_color{
+	background-color: rgb(254, 166, 32);
+}

@@ -7,7 +7,7 @@ class Recipes:
         self.name = data['name']
         self.time_cook = data['time_cook']
         self.level_recipe = data['level_recipe']
-        
+        self.id = data['id']
         self.description = data['description']
         self.preparation = data['preparation']
         self.created_at= data['created_at']
@@ -88,9 +88,11 @@ class Recipes:
         return recipes
 
     @classmethod
-    def categoria_id(cls, formulario):
-        query = "SELECT * FROM recipes WHERE category_id = %(category_id)s"
+    def show_recipes_byid(cls, formulario):
+        print(formulario)
+        query = "SELECT * FROM recipes WHERE category_id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
-        print(result)
-        recipe = cls(result[0]) #creamos una instancia de recipes
-        return recipe
+        recipes = []
+        for recipe in result:
+            recipes.append(cls(recipe))
+        return recipes

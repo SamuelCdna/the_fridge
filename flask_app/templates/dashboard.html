@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
@@ -18,7 +20,7 @@
     <nav class="navbar navbar-ligth  " style="background-color: rgb(254, 166, 32);">
         <div class="container-fluid">
             <p></p>
-            <h1 class="">Easy Cock</h1>
+            <h1 class="text-white">Easy Cock</h1>
             <button class="navbar-toggler btn_white" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon "></span>
@@ -72,23 +74,134 @@
             <div class="col-2">
 
                 <ul class="list-group">
-                    <li class="list-group-item">Categoria 1</li>
-                    <li class="list-group-item">Categoria 2</li>
-                    <li class="list-group-item">Categoria 3</li>
 
-
-
+                    <a href="/dashboard/0" class="list-group-item list-group-item-action hover_atelier">Todas las
+                        categorias</a>
+                    {% for category in categories %}
+                    <a href="/dashboard/{{category.id}}"
+                        class="list-group-item list-group-item-action hover_atelier">{{category.name}}</a>
+                    {% endfor %}
                 </ul>
 
-
-
-
             </div>
-            <div class="col-9">
-                <div class="nav nav-tabs px-5" id="nav-tab" role="tablist">
+
+
+            <div class="col-9 ">
+
+                <ul class="nav nav-tabs  d-flex justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item px-3 mx-3" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true">RECETAS</button>
+                    </li>
+                    <li class="nav-item px-3 mx-3 " role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">MI NEVERA</button>
+                    </li>
+                    <li class="nav-item px-3 mx-3" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                            aria-selected="false">RESEÑAS Y FAVORITOS</button>
+                    </li>
+ 
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                        tabindex="0">
+                        <div class="row">
+                            {% for recipe in recipes%}
+                                <div class="col">
+                                
+                                    
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="{{ recipe.img}}" class="d-block w-100" alt="{{recipe.name}}">
+                                            <div class="card-body">
+                                                <h1></h1>
+                                            <p class="card-text">{{recipe.description}}</p>
+                                            </div>
+                                        </div>
+                        
+                                </div>
+                                {% endfor %}
+                                
+                            </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                        tabindex="0">
+                    
+                        <div class="container text-center col-12">
+                            <h2>Ingresa tus ingredientes, palabra clave...!!</h2>
+                            <form action="/search_ingredients" method="POST" class="input-group mb-3">
+                                <input type="text" class="form-control" name="search"
+                                    placeholder="Busca tus ingrediente, palabra clave...!!"
+                                    aria-label="Busca tus ingrediente, palabra clave...!!" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+            
+                                
+                    
+                                <table class="table table-hover mx-auto">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Nombre</th>
+                                            <th></th>
+                    
+                                        </tr>
+                                    <tbody>
+                                        {% for ingredient in ingredients %}
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="{{ingredient.id}}" id="check" name="{{ingredient.id}}">
+                    
+                                                </div>
+                    
+                                            </td>
+                                            <td><img src="{{ ingredient.img}}" width="80px" alt="{{ingredient.name}}"></td>
+                                            <td>{{ingredient.name}}</td>
+                                            
+                    
+                    
+                                        </tr>
+                                        {% endfor%}
+                    
+                                    </tbody>
+                                    </thead>
+                    
+                    
+                    
+                                </table>
+            
+            
+            
+                            </div>
+                            
+            
+                        </div>
+                    
+                    
+                    </div>
+                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                        tabindex="0">...</div>
+                    
+                </div>
+
+
+
+
+                <!-- <div class="nav nav-tabs px-5" id="nav-tab" role="tablist">
                     <button class="nav-link active px-5" id="nav-home-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                        aria-selected="true">Mi nevera</button>
+                        aria-selected="true">RECETAS</button>
                     <button class="nav-link px-5" id="nav-profile-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
                         aria-selected="false">Novedades</button>
@@ -97,15 +210,15 @@
                         aria-selected="false">Reseñas y favoritos </button>
                     <button class="nav-link px-5" id="nav-contact-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-recipes" type="button" role="tab" aria-controls="nav-recipes"
-                        aria-selected="false">Mis recetas </button>
-                </div>
+                        aria-selected="false">Mi nevera </button>
+                </div> -->
 
-
-                <div class="tab-content" id="nav-tabContent">
-
-                    <div class="tab-pane fade show active col-6 mt-5" id="nav-home" role="tabpanel"
-                        aria-labelledby="nav-home-tab" tabindex="0">
-                        <!-- <div class="form-check ">
+                <!-- 
+                <div class="tab-content" id="nav-tabContent"> -->
+                <!-- 
+                    <div class="tab-pane fade show active col-9 mt-5" id="nav-home" role="tabpanel"
+                        aria-labelledby="nav-home-tab" tabindex="0"> -->
+                <!-- <div class="form-check ">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Default checkbox
@@ -122,63 +235,12 @@
                             <label class="form-check-label" for="flexCheckChecked">
                                 Checked checkbox
                             </label> -->
-                            <div class="row">
-                                <div class="col">
-                                {% for recipe in recipes%}
-                                <div class="card" style="width: 18rem;">
-                                    <img src="{{ recipe.img}}" class="d-block w-100" alt="{{recipe.name}}">
-                                    <div class="card-body">
-                                        <h1></h1>
-                                    <p class="card-text">{{recipe.description}}</p>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
 
-                            </div>
-                        
-                        
-                        </div>
-
-                    </div>
+                <!-- </div>
 
 
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
                         tabindex="0">
-
-                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-                            </div>
-                            <div class="carousel-inner text-dark">
-                                {% for recipe in recipes%}
-                                <div class="carousel-item active">
-                                    <img src="{{ recipe.img}}" class="d-block w-100" alt="{{recipe.name}}">
-                                    <div class="carousel-caption d-none d-md-block text-dark">
-                                        <h5>{{recipe.name}}</h5>
-                                        <p>{{recipe.description}}</p>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                                
-                            </div>
-                            <button class="carousel-control-prev" type="button"
-                                data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button"
-                                data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
 
                     </div>
 
@@ -189,12 +251,16 @@
 
                     <div class="tab-pane fade" id="nav-recipes" role="tabpanel" aria-labelledby="nav-contact-tab"
                         tabindex="0">
-                        <p></p>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Default checkbox
+                            </label>
 
                     </div>
 
 
-                </div>
+                </div> -->
 
             </div>
         </div>

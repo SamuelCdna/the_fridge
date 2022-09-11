@@ -47,3 +47,13 @@ class Category:
             productos.append(cls(producto))
 
         return productos
+
+        
+    @classmethod
+    def get_by_id(cls, formulario): 
+        query = "SELECT * FROM categorys WHERE id = %(id)s;"
+        result = connectToMySQL('my_fridge').query_db(query, formulario) #Lista de diccionarios
+        category = cls(result[0])
+        print(category)
+        return category
+

@@ -6,6 +6,7 @@ from flask_app.controllers import users_controller ,recipes_controller, ingredie
 from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
+from flask_app.models.ingredients import Ingredient
 #Importación BCrypt
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -71,27 +72,30 @@ def dashboarduser(category):
     }
     if 'user_id' not in session:
         return redirect('/')
+    
+    ingredients = Ingredient.get_all()
 
     user = User.get_by_id(formulario)
-    recipes = Recipes.get_all()
     categories= Category.get_all()
 
     session['user_id'] = user.id
 
     if user.id == 1 :
-        return render_template('admi_dashboard.html', user=user, recipes=recipes, categories = categories)
+        return render_template('admi_dashboard.html', user=user, )
     else:
         if category == 0:
-            categories= Category.get_all()
-
+            recipes= Recipes.get_all()
+            return render_template('dashboard.html', user=user, recipes=recipes, categories = categories, ingredients = ingredients)
         else:
-
             form_category = {
-                "category" : category
+                "id" : category
             }
-            categories= Category.get_by_id(form_category)
+            
+            recipes = Recipes.show_recipes_byid(form_category)
+
+    return render_template('dashboard.html', user=user, recipes=recipes, categories = categories ,ingredients = ingredients)
     
-    return render_template('dashboard.html', user=user, recipes=recipes, categories = categories)
+    
 
 
 # @app.route('/dashboard')#dashboard del administrador
