@@ -24,9 +24,6 @@ def Creceta():
     
     return render_template('create_recipe.html', user=user, categorias=categorias)
 
-
-    
-
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
     print('hola')
@@ -42,10 +39,6 @@ def create_recipe():
     
     return redirect('/dashboard')
 
-
-
-
-
 @app.route('/Ccategorys')
 def Ccategorys():
     if 'user_id' not in session:
@@ -54,12 +47,10 @@ def Ccategorys():
     formulario = {
         'id': session['user_id']
     }
-
     user = User.get_by_id(formulario)
-
     return render_template('category.html', user=user)
 
-@app.route('/ingredients')
+@app.route('/search-recipes')
 def ingredients():
     if 'user_id' not in session:
         return redirect('/')

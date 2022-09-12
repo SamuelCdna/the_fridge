@@ -14,7 +14,7 @@ class Recipes:
         self.updated_at= data['updated_at']
         self.user_id = data['user_id']
         self.category_id = data['category_id']
-        self.img = data['img']
+        # self.img = data['img']
         
     
     @staticmethod
@@ -80,7 +80,7 @@ class Recipes:
                 condition = F"I.name like '%{item}%'"
             else:
                 condition += F" or I.name like '%{item}%'"
-        query = F"SELECT R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where {condition}"
+        query = F"SELECT distinct R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where {condition}"
         result = connectToMySQL('my_fridge').query_db(query)
         recipes = []
         for recipe in result:
