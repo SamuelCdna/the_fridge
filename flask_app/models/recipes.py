@@ -96,3 +96,11 @@ class Recipes:
         for recipe in result:
             recipes.append(cls(recipe))
         return recipes
+
+    # @classmethod
+    # def categoria_id(cls, formulario):
+    #     query = "SELECT * FROM recipes WHERE category_id = %(category_id)s"
+    #     result = connectToMySQL('my_fridge').query_db(query, formulario)
+    #     print(result)
+    #     recipe = cls(result[0]) #creamos una instancia de recipes
+    #     return recipe

@@ -59,18 +59,7 @@ def Ccategorys():
 
     return render_template('category.html', user=user)
 
-# @app.route('/ingredients')
-# def ingredients():
-#     if 'user_id' not in session:
-#         return redirect('/')
 
-#     formulario = {
-#         'id': session['user_id']
-#     }
-
-#     user = User.get_by_id(formulario)
-
-#     return render_template('ingredients.html', user=user, recipies=[])
 
 @app.route('/view_recipes') 
 def view_recipes():
@@ -111,14 +100,19 @@ def update_reseña():
     Recipes.update(request.form)
     return redirect('/view_recipes')
 
-
-
-
-
-
-
-@app.route('/search_ingredients', methods=['POST'])
-def SearchIngredients():
+@app.route('/search_recipes', methods=['POST'])
+def search_recipes():
     if 'user_id' not in session: 
         return redirect('/')
-    return render_template('ingredients.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
+    return render_template('search_recipes.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
+
+@app.route('/search_recipes')
+def searchRecipes():
+    if 'user_id' not in session:
+        return redirect('/')
+
+    formulario = {
+        'id': session['user_id']
+    }
+    return render_template('search_recipes.html', user= User.get_by_id(formulario), recipies=[], ingredients = Ingredient.get_all())
+    

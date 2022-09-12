@@ -18,6 +18,7 @@
             <p></p>
             <h1 class="text-white">Easy Cock</h1>
 
+
             <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
             
         </div>
@@ -27,16 +28,22 @@
 
     <div class="container">
 
-        <div class="container text-center col-12">
-        <h2>Ingresa tus ingredientes, palabra clave...!!</h2>
-        <form action="/search_ingredients" method="POST" class="input-group mb-3">
-            <input type="text" class="form-control" name="search"
-                placeholder="Busca tus ingrediente, palabra clave...!!"
-                aria-label="Busca tus ingrediente, palabra clave...!!" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Seleccionar ingredientes
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    {% for ingredient in ingredients %}
+                        <a class="dropdown-item" href="#">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" value="{{ingredient.name}}" onchange='handleChange(this);'>
+                                <label class="form-check-label">{{ingredient.name}}</label>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
-        </form>
         </div>
 
         <div class="container">
@@ -88,19 +95,13 @@
 
 
                 </div>
-                
-
+            
                 <div class="col-3 text-center">
                     <a class="btn btn-primary" href="/create_ingredients">Crear Ingrediente</a>
                     <a href="/dashboard/0" class="btn btn-primary">Home</a>
                 </div>
-            
-
             </div>
-
         </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
