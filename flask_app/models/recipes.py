@@ -15,6 +15,9 @@ class Recipes:
         self.user_id = data['user_id']
         self.category_id = data['category_id']
         self.img = data['img']
+
+        if 'categoria' in data :
+            self.categoria = data['categoria']
         
     
     @staticmethod
@@ -41,6 +44,7 @@ class Recipes:
     def save(cls, formulario):
         query = "INSERT INTO recipes (name, time_cook, level_recipe, description, preparation, user_id, category_id , img ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s,  %(description)s, %(preparation)s, %(user_id)s ,%(category_id)s,%(img)s)"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
+        print(result)
         return result
     
     @classmethod
@@ -51,6 +55,15 @@ class Recipes:
         for recipe in results:
             recipes.append(cls(recipe)) #1.- cls(recipe) me crea una instancia en base al diccionario, 2.- Agrego la instancia a mi lista de recetas
         return recipes
+
+    @classmethod
+    def recipe_and_category(cls): 
+        query = "SELECT *, categorys.name AS categoria FROM recipes LEFT JOIN categorys ON recipes.category_id = categorys.id ;"
+        results = connectToMySQL('my_fridge').query_db(query) 
+        recipescategory = []
+        for recipe in results:
+            recipescategory.append(cls(recipe))
+        return recipescategory
 
     @classmethod
     def get_by_id(cls, formulario): #formulario = {id: 1}

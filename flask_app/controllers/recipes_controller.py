@@ -1,4 +1,4 @@
-from flask import render_template, redirect, session, request, flash
+from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app import app
 
 #Importación del modelo
@@ -6,6 +6,7 @@ from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
 from flask_app.models.ingredients import Ingredient
+from flask_app.models.ingredient_receta import Ingrerecipe
 from flask_app.controllers import users_controller, recipes_controller, ingredients_controller, category_controller
 
 @app.route('/Creceta')
@@ -20,9 +21,11 @@ def Creceta():
 
     user = User.get_by_id(formulario)
 
+    ingredients = Ingredient.get_all()
+
     categorias= Category.get_all()
     
-    return render_template('create_recipe.html', user=user, categorias=categorias)
+    return render_template('create_recipe.html', user=user, categorias=categorias, ingredients= ingredients)
 
 
     
@@ -38,9 +41,13 @@ def create_recipe():
     if not Recipes.valida_receta(request.form): 
         return redirect('/Creceta')
 
-    Recipes.save(request.form)
+
+    id_recipe = Recipes.save(request.form)
     
-    return redirect('/dashboard/0')
+    Ingrerecipe.save(id_recipe,request.form.getlist('ingredients[]'))
+
+    
+    return jsonify(message="correcto")
 
 
 
@@ -69,7 +76,7 @@ def view_recipes():
         "id": session['user_id']
     }
     user = User.get_by_id(formulario) 
-    recipes = Recipes.get_all()
+    recipes = Recipes.recipe_and_category()
     return render_template('view_recipesadmi.html', user=user, recipes=recipes)
 
 

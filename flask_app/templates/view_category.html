@@ -27,26 +27,32 @@
     <div class="container">
 
         <div class="row">
+
             <h1 class="text-center col-10">Tus Categorias!!</h1>
-            <div class="col-9">
 
-                <div class=" mt-3">
-                    
-                        <div class="col-6 mt-3">
-                            <div class="form-group">
-                                    {% for category in categories%}
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="Comida Mexicana" name="Comida Mexicana" id="firstCheckboxStretched">
-                                        <label class="form-check-label stretched-link" for="firstCheckboxStretched">{{category.name}}</label>
-                                    </li>
-                                    {% endfor %}
-                                
-                            </div>
-                            
-                        </div>
-                    </form>
-                </div>
-
+            <div class="col-7">
+            
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Nombre</th>
+                                            <th>Acciones </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categories%}
+                                        <tr>
+                                            <td><input class="form-check-input me-1" type="checkbox" value="{{category.id}}" name="{{category.name}}" id="firstCheckboxStretched"></td>
+                                            <td>{{category.name}}</td>
+                                            <td>
+                                                <a href="/edit_categories/{{category.id}}" class="btn btn-warning">Editar</a>
+                                                <a href="/delete_categories/{{category.id}}" class="btn btn-danger">Eliminar</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
             </div>
 
             <div class="col-3 text-end">

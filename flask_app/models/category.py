@@ -37,16 +37,7 @@ class Category:
             #1.- cls(recipe) me crea una instancia en base al diccionario, 2.- Agrego la instancia a mi lista de recetas
         return categorias
 
-    @classmethod
-    def acces(cls):
-        query = "SELECT * FROM productos WHERE categoria LIKE 'accesorios'"
-        results = connectToMySQL('proyecto_pañalera').query_db(query) #Lista de diccionarios 
-        productos = []
-        for producto in results:
-            #producto = diccionario
-            productos.append(cls(producto))
 
-        return productos
 
         
     @classmethod
@@ -57,3 +48,14 @@ class Category:
         print(category)
         return category
 
+
+    @classmethod
+    def update(cls, formulario):
+        query = "UPDATE categorys SET name=%(name)s WHERE id = %(id)s"
+        connectToMySQL('my_fridge').query_db(query, formulario)
+
+
+    @classmethod
+    def delete(cls, formulario):
+        query = "DELETE FROM categorys WHERE id = %(id)s"
+        connectToMySQL('my_fridge').query_db(query,formulario)

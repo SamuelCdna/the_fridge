@@ -72,7 +72,7 @@
 
         <div class="row">
             <div class="col-2">
-
+                <!--  LISTA CATEGORIAS, DONDE UNDES Y CAMBIA DE CATEGORIA -->
                 <ul class="list-group">
 
                     <a href="/dashboard/0" class="list-group-item list-group-item-action hover_atelier">Todas las
@@ -87,8 +87,8 @@
 
 
             <div class="col-9 ">
-
-                <ul class="nav nav-tabs  d-flex justify-content-center" id="myTab" role="tablist">
+                <!--  BARRA BOTONES -->
+                <ul class="nav nav-tabs  d-flex justify-content-center" id="myTab" role="presentation">
                     <li class="nav-item px-3 mx-3" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
@@ -106,6 +106,7 @@
                     </li>
  
                 </ul>
+                <!-- BOTON DONDE SALEN LAS RECETAS -->
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                         tabindex="0">
@@ -114,7 +115,7 @@
                                 <div class="col">
                                 
                                     
-                                        <div class="card" style="width: 18rem;">
+                                        <div class="card img_box" style="width: 18rem;">
                                             <img src="{{ recipe.img}}" class="d-block w-100" alt="{{recipe.name}}">
                                             <div class="card-body">
                                                 <h1></h1>
@@ -127,6 +128,8 @@
                                 
                             </div>
                     </div>
+
+                    <!--  BOTON DE MI NEVERA -->
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                         tabindex="0">
                     
@@ -161,8 +164,8 @@
                                         <tr>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="{{ingredient.id}}" id="check" name="{{ingredient.id}}">
-                    
+                                                    <input class="form-check-input" type="checkbox" value="{{ingredient.id}}" onclick="view_ingredient()" id="check" name="{{ingredient.id}}">
+                                                    <!--  -->
                                                 </div>
                     
                                             </td>

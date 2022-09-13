@@ -5,6 +5,7 @@ from flask_app.models.users import User
 from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
 from flask_app.models.ingredients import Ingredient
+from flask_app.models.ingredient_receta import Ingrerecipe
 
 @app.route('/create_ingredients')
 def create_ingredientes():

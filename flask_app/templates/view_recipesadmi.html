@@ -15,49 +15,7 @@
             <p></p>
             <h1 class="text-white">Easy Cock</h1>
             <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
-            <!-- <button class="navbar-toggler btn_white" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon "></span>
-            </button>
-            <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header pattern">
-                    <div class="box_logo">
-                        <img src="../static/img/easy.jpg" width="100px" height="70px" class=" mx-4  " />
-                    </div>
-                    <h4 class="offcanvas-title" id="offcanvasNavbarLabel">NOMBRE USUARIO
-                    </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                        <li class="nav-item">
-
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Subir foto de perfil
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <form action="/upload/logo/user" method="POST" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <input type="file" id="uploadprofile" name="uploadprofile"
-                                                accept=".jpg,.png">
-                                            <input type="submit" value="Subir foto" class="btn btn_form mt-3">
-                                        </div>
-
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a class=" btn btn-danger mt-3" href="/logout">Cerrar Sesión</a>
-                </div>
-                <a class=" btn btn-danger mx-5" href="/deleteuser/{{user.id}}">Eliminar cuenta</a>
-            </div> -->
         </div>
     </nav>
 
@@ -85,7 +43,7 @@
                                     <td><img src="{{ recipe.img}}"   width="80px"  alt="{{recipe.name}}"></td>
                                     <td>{{recipe.name}}</td>
                                     <td>{{recipe.description}} </td>
-                                    <td>{{recipe.category_id}}</td>
+                                    <td>{{recipe.categoria}}</td>
                                     <td>
                                         <!-- <a href="#" class="btn btn-primary"></a> -->
                                         <!-- Button trigger modal -->
