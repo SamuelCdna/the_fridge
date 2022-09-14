@@ -74,12 +74,11 @@
             <div class="col-2">
                 <!--  LISTA CATEGORIAS, DONDE UNDES Y CAMBIA DE CATEGORIA -->
                 <ul class="list-group">
-
-                    <a href="/dashboard/0" class="list-group-item list-group-item-action hover_atelier">Todas las
+                    
+                    <a href="/dashboard/0" class="list-group-item list-group-item-action d-flex"> <img src="../static/img/icon_category/vegana.png" class="icon"/>Todas las
                         categorias</a>
                     {% for category in categories %}
-                    <a href="/dashboard/{{category.id}}"
-                        class="list-group-item list-group-item-action hover_atelier">{{category.name}}</a>
+                    <a href="/dashboard/{{category.id}}"class="list-group-item list-group-item-action d-flex"><img  class="icon" src="../static/img/icon_category/{{category.icon}}" alt="{{category.icon}}"/>{{category.name}}</a>
                     {% endfor %}
                 </ul>
 
@@ -115,8 +114,8 @@
                                 <div class="col">
                                 
                                     
-                                        <div class="card img_box" style="width: 18rem;">
-                                            <img src="{{ recipe.img}}" class="d-block w-100" alt="{{recipe.name}}">
+                                        <div class="card " style="width: 18rem;">
+                                            <img src="{{ recipe.img}}" class="d-block w-100 img_box " alt="{{recipe.name}}">
                                             <div class="card-body">
                                                 <h1></h1>
                                             <p class="card-text">{{recipe.description}}</p>

@@ -6,6 +6,7 @@ class Category:
     def __init__(self, data):
         self.id = data['id']
         self.name = data['name']
+        self.icon = data['icon']
         self.created_at= data['created_at']
         self.updated_at= data['updated_at']
         
@@ -32,9 +33,9 @@ class Category:
         results = connectToMySQL('my_fridge').query_db(query) #Lista de diccionarios 
         categorias = []
         for categoria in results:
-            #recipe = diccionario
+            print(categoria)
             categorias.append(cls(categoria)) 
-            #1.- cls(recipe) me crea una instancia en base al diccionario, 2.- Agrego la instancia a mi lista de recetas
+        
         return categorias
 
 

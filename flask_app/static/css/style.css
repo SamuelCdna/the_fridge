@@ -308,6 +308,13 @@ dialog button:hover {
 	background-color: rgb(254, 166, 32);
 }
 
-.img_box{
-	
+.img_box {
+	width: 220px ;
+    height: 220px;
+    border-radius: 2%;
+    object-fit: cover;
+}
+
+.icon{
+	width: 50px;
 }
