@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label for="category_id">Escoge una categoria: </label>
                                 <select name="category_id" id="category_id">
-                                    {% for categoria in categorias %}
+                                    {% for categoria in categories %}
                                     <option value="{{receta.category_id}}">{{categoria.name}}</option>
                                     {% endfor %}
                                 </select>

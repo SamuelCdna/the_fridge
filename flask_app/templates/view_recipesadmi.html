@@ -47,16 +47,16 @@
                                     <td>
                                         <!-- <a href="#" class="btn btn-primary"></a> -->
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{recipe.id}}">
                                             Mostrar
                                         </button>
                                         
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{recipe.id}}" tabindex="-1" aria-labelledby="exampleModal{{recipe.id}}Label" aria-hidden="true">
                                             <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">{{recipe.name}}</h5>
+                                                <h5 class="modal-title" id="exampleModal{{recipe.id}}Label">{{recipe.name}}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">

@@ -87,7 +87,7 @@ class Recipes:
     @classmethod
     def searchRecipiesByIngredients(cls, filter):
         condition = ""
-        for item in filter.split(', '):
+        for item in filter:
             if condition == "":
                 condition = F"I.name like '%{item}%'"
             else:
@@ -99,6 +99,7 @@ class Recipes:
             #recipe = diccionario
             recipes.append(cls(recipe))
         return recipes
+
 
     @classmethod
     def show_recipes_byid(cls, formulario):

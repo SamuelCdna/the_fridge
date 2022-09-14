@@ -114,7 +114,7 @@
                                 <div class="col">
                                 
                                     
-                                        <div class="card " style="width: 18rem;">
+                                        <div class="card " style="width: 18rem; height:22rem;">
                                             <img src="{{ recipe.img}}" class="d-block w-100 img_box " alt="{{recipe.name}}">
                                             <div class="card-body">
                                                 <h1></h1>
@@ -131,57 +131,18 @@
                     <!--  BOTON DE MI NEVERA -->
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                         tabindex="0">
+
+                        <a href="/searchRecipes" class="btn btn-primary mt-3">Ver mi nevera</a>
                     
-                        <div class="container text-center col-12">
-                            <h2>Ingresa tus ingredientes, palabra clave...!!</h2>
-                            <form action="/search_ingredients" method="POST" class="input-group mb-3">
-                                <input type="text" class="form-control" name="search"
-                                    placeholder="Busca tus ingrediente, palabra clave...!!"
-                                    aria-label="Busca tus ingrediente, palabra clave...!!" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit">Search</button>
-                                </div>
-                            </form>
-                        </div>
+
 
                         <div class="row justify-content-center">
+
                             <div class="col-6">
             
                                 
                     
-                                <table class="table table-hover mx-auto">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>Nombre</th>
-                                            <th></th>
-                    
-                                        </tr>
-                                    <tbody>
-                                        {% for ingredient in ingredients %}
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="{{ingredient.id}}" onclick="view_ingredient()" id="check" name="{{ingredient.id}}">
-                                                    <!--  -->
-                                                </div>
-                    
-                                            </td>
-                                            <td><img src="{{ ingredient.img}}" width="80px" alt="{{ingredient.name}}"></td>
-                                            <td>{{ingredient.name}}</td>
-                                            
-                    
-                    
-                                        </tr>
-                                        {% endfor%}
-                    
-                                    </tbody>
-                                    </thead>
-                    
-                    
-                    
-                                </table>
+
             
             
             

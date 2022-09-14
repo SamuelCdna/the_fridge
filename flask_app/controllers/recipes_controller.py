@@ -97,7 +97,7 @@ def edit_receta(id):
     return render_template('edit_receta.html', user=user, receta=receta, categories = categories)
 
 @app.route('/update/recipe', methods=['POST'])
-def update_reseña():
+def update_receta():
     if 'user_id' not in session: 
         return redirect('/')
 
@@ -107,17 +107,35 @@ def update_reseña():
     Recipes.update(request.form)
     return redirect('/view_recipes')
 
+
+@app.route('/delete/<int:id>')
+def delete_receta(id):
+    if 'user_id' not in session: 
+        return redirect('/')
+    
+    formulario = {"id": id}
+    Recipes.delete(formulario)
+    return redirect('/view_recipes')
+
+
 @app.route('/search_recipes', methods=['POST'])
 def search_recipes():
     if 'user_id' not in session: 
         return redirect('/')
-    return render_template('search_recipes.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
+    return render_template('search_recipes.html', recipes = Recipes.searchRecipiesByIngredients(request.form.getlist('search[]')), ingredients = Ingredient.get_all())
 
-@app.route('/found_recipe')
+@app.route('/searchRecipes')
 def searchRecipes():
     if 'user_id' not in session:
         return redirect('/')
 
+    if 'count' in session:
+
+        session['count'] += 1
+    else:
+        session['count'] = 1
+
+    
     formulario = {
         'id': session['user_id']
     }

@@ -118,3 +118,16 @@ def dashboarduser(category):
 def logout():
     session.clear()
     return redirect('/')
+
+
+@app.route('/my_fridge')
+def my_fridgee():
+
+    if 'user_id' not in session:
+        return redirect('/')
+    
+    recipes= Recipes.get_all()
+    
+    ingredients = Ingredient.get_all()
+    
+    return render_template('search_recipes.html', recipes=recipes ,ingredients = ingredients)
