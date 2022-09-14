@@ -113,7 +113,7 @@ def search_recipes():
         return redirect('/')
     return render_template('search_recipes.html', recipes = Recipes.searchRecipiesByIngredients(request.form["search"]), ingredients = Ingredient.get_all())
 
-@app.route('/search_recipes')
+@app.route('/found_recipe')
 def searchRecipes():
     if 'user_id' not in session:
         return redirect('/')
