@@ -304,6 +304,12 @@ dialog button:hover {
 	background-color: rgb(254, 166, 32);
 }
 
+.easy_color_nav{
+	background-color: rgb(254, 166, 32);
+	background-image: url(../img/easy_nav2.png);
+	background-size: cover;
+}
+
 #easy_color{
 	background-color: rgb(254, 166, 32);
 }
@@ -319,3 +325,25 @@ dialog button:hover {
 	width: 50px;
 }
 
+.recipe_view{
+	width: 450px ;
+    height: auto;
+    border-radius: 2%;
+}
+
+
+.img_viewrecipeAdmi {
+	width: 120px ;
+    height: 120px;
+    border-radius: 2%;
+    object-fit: cover;
+}
+
+.admi_home{
+	width: 700px;
+	margin-left:8%;
+}
+
+.size_acciones{
+	width: 250px;
+}

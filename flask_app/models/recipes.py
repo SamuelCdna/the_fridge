@@ -92,7 +92,7 @@ class Recipes:
                 condition = F"I.name like '%{item}%'"
             else:
                 condition += F" or I.name like '%{item}%'"
-        query = F"SELECT R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where {condition}"
+        query = F"SELECT DISTINCT R.* FROM  my_fridge.recipes R inner join my_fridge.ingrediente_receta IR on(R.id=IR.recipe_id) inner join my_fridge.ingredients I on(I.id = IR.ingredient_id) where {condition}"
         result = connectToMySQL('my_fridge').query_db(query)
         recipes = []
         for recipe in result:
@@ -118,3 +118,20 @@ class Recipes:
     #     print(result)
     #     recipe = cls(result[0]) #creamos una instancia de recipes
     #     return recipe
+
+    @classmethod
+    def prueba(cls,formulario):
+        query = "SELECT * FROM recipes WHERE id = %(id)s"
+        result = connectToMySQL('my_fridge').query_db(query,formulario) 
+        recipe = cls(result[0])             
+        for recipe in result:
+            query = "SELECT name, amount, icon FROM ingrediente_receta LEFT JOIN ingredients ON ingredient_id = ingredients.id WHERE recipe_id = "+str(recipe['id'])
+            result_receta = connectToMySQL('my_fridge').query_db(query)
+            ingredients = []
+            for ingredient in result_receta:
+                ingredients.append(ingredient)
+
+            recipe['ingrediente'] = ingredients
+            # print('aqui es un nueva receta')
+            # print(recipe['ingrediente'])
+        return recipe

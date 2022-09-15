@@ -10,10 +10,10 @@
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-ligth  easy_color " >
+    <nav class="navbar navbar-ligth  easy_color_nav" >
         <div class="container-fluid">
             <p></p>
-            <h1 class="text-white">Easy Cock</h1>
+            <h1 class="text-white">Easy Cook</h1>
             <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
 
         </div>
@@ -36,35 +36,38 @@
                             <th>Descripcion</th>
                             <th>Categoria</th>
                             <th>Acciones</th>
+                            
                         </tr>
                         <tbody>
                             {% for recipe in recipes %}
                                 <tr>
-                                    <td><img src="{{ recipe.img}}"   width="80px"  alt="{{recipe.name}}"></td>
+                                    <td><img src="{{ recipe.img}}" class="img_viewrecipeAdmi"   alt="{{recipe.name}}"></td>
                                     <td>{{recipe.name}}</td>
                                     <td>{{recipe.description}} </td>
                                     <td>{{recipe.categoria}}</td>
-                                    <td>
-                                        <!-- <a href="#" class="btn btn-primary"></a> -->
+                                    <td class="size_acciones">
+                                        <!-- <a href="#" class="btn btn-primary">
+                                            
+                                        </a> -->
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{recipe.id}}">
+                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{recipe.id}}">
                                             Mostrar
                                         </button>
                                         
-                                        <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{recipe.id}}" tabindex="-1" aria-labelledby="exampleModal{{recipe.id}}Label" aria-hidden="true">
                                             <div class="modal-dialog">
-                                            <div class="modal-content">
+                                            <div class="modal-content text-center ">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModal{{recipe.id}}Label">{{recipe.name}}</h5>
+                                                <h5 class="modal-title " id="exampleModal{{recipe.id}}Label">{{recipe.name}}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <div class="modal-body">
-                                                <div class="row">
-                                                    <img src="{{ recipe.img}}"      alt="{{recipe.name}}">
-                                                    <p>{{recipe.description}}</p>
-                                                    <p>{{recipe.preparation}}</p>
-                                                </div>
+                                                <div class="modal-body  ">
+                                                    <div class=" row">
+                                                        <img src="{{ recipe.img}}" class="recipe_view "   alt="{{recipe.name}}">
+                                                        <p>{{recipe.description}}</p>
+                                                        <p>{{recipe.preparation}}</p>
+                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -73,8 +76,8 @@
                                             </div>
                                             </div>
                                         </div>
-                                        <a href="/edit/recipe/{{recipe.id}}" class="btn btn-primary">Editar</a>
-                                        <a href="/delete/{{recipe.id}}" class="btn btn-primary">Borrar</a>
+                                        <a href="/edit/recipe/{{recipe.id}}" class="btn btn-sm btn-primary">Editar</a>
+                                        <a href="/delete/{{recipe.id}}" class="btn btn-sm btn-primary">Borrar</a>
                                         
                                     </td>
                                     
@@ -94,6 +97,7 @@
 
             <div class="col-2 text-end">
                 <a href="/dashboard/0" class="btn btn-primary">Home</a>
+                <a href="/Creceta" class="btn btn-primary">Crear Nueva Receta</a>
             </div>
 
 

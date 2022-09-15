@@ -7,7 +7,8 @@ from flask_app.models.recipes import Recipes
 from flask_app.models.category import Category 
 from flask_app.models.ingredients import Ingredient
 from flask_app.models.ingredient_receta import Ingrerecipe
-from flask_app.controllers import users_controller, recipes_controller, ingredients_controller, category_controller
+from flask_app.models.reviews import Reseñas
+from flask_app.controllers import users_controller, recipes_controller, ingredients_controller, category_controller, reviews_controller
 
 @app.route('/Creceta')
 def Creceta():
@@ -122,22 +123,35 @@ def delete_receta(id):
 def search_recipes():
     if 'user_id' not in session: 
         return redirect('/')
-    return render_template('search_recipes.html', recipes = Recipes.searchRecipiesByIngredients(request.form.getlist('search[]')), ingredients = Ingredient.get_all())
+    search_list = request.form.getlist('search[]')    
+    if len(search_list)<=0:
+        print('No seleccionó nada')
+        return redirect('/searchRecipes')
+    else:
+        return render_template('search_recipes.html', recipes = Recipes.searchRecipiesByIngredients(search_list), ingredients = Ingredient.get_all())
 
 @app.route('/searchRecipes')
 def searchRecipes():
     if 'user_id' not in session:
         return redirect('/')
-
-    if 'count' in session:
-
-        session['count'] += 1
-    else:
-        session['count'] = 1
-
     
+
     formulario = {
         'id': session['user_id']
     }
     return render_template('search_recipes.html', user= User.get_by_id(formulario), recipies=[], ingredients = Ingredient.get_all())
     
+
+@app.route('/view_receta/<int:id>') 
+def view_recetas(id):
+    if 'user_id' not in session:  
+        return redirect('/')
+    formulario = {
+        "id": session['user_id']
+    }
+    user = User.get_by_id(formulario) 
+    formulario_receta = {"id": id}
+    receta = Recipes.prueba(formulario_receta)
+    reseñas = Reseñas.get_reseñas()
+    # print(receta['ingrediente'])
+    return render_template('view_recipe.html', user=user, recipe=receta, reseñas=reseñas)

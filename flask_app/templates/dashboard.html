@@ -17,7 +17,7 @@
 <body>
 
     <!-- barra de navegación -->
-    <nav class="navbar navbar-ligth  " style="background-color: rgb(254, 166, 32);">
+    <nav class="navbar navbar-ligth easy_color_nav " >
         <div class="container-fluid">
             <p></p>
             <h1 class="text-white">Easy Cook</h1>
@@ -31,7 +31,7 @@
                     <div class="box_logo">
                         <img src="../static/img/easy.jpg" width="100px" height="70px" class=" mx-4  " />
                     </div>
-                    <h4 class="offcanvas-title" id="offcanvasNavbarLabel">NOMBRE USUARIO
+                    <h4 class="offcanvas-title" id="offcanvasNavbarLabel">{{user.last_name +' '+ user.first_name}}
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -109,13 +109,13 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                         tabindex="0">
-                        <div class="row">
+                        <div class="row mt-3">
                             {% for recipe in recipes%}
                                 <div class="col">
                                 
                                     
-                                        <div class="card " style="width: 18rem; height:22rem;">
-                                            <img src="{{ recipe.img}}" class="d-block w-100 img_box " alt="{{recipe.name}}">
+                                        <div class="card mt-3 " style="width: 18rem; height:22rem;">
+                                            <a href="/view_receta/{{recipe.id}}"><img src="{{ recipe.img}}" class="d-block w-100 img_box " alt="{{recipe.name}}"></a> 
                                             <div class="card-body">
                                                 <h1></h1>
                                             <p class="card-text">{{recipe.description}}</p>

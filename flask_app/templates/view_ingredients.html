@@ -13,10 +13,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-ligth  easy_color " >
+    <nav class="navbar navbar-ligth  easy_color_nav" >
         <div class="container-fluid">
             <p></p>
-            <h1 class="text-white">Easy Cock</h1>
+            <h1 class="text-white">Easy Cook</h1>
 
 
             <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
@@ -30,9 +30,7 @@
 
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Seleccionar ingredientes
-                </button>
+
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                     {% for ingredient in ingredients %}
                         <a class="dropdown-item" href="#">
@@ -52,26 +50,20 @@
 
                     <h1>Ingredientes</h1>
         
-                    <table class="table table-hover mx-auto">
+                    <table class="table table-hover mx-auto col-7 text-center">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                
+                                <th>Icono</th>
                                 <th>Nombre</th>
-                                <th></th>
+                                <th>Acciones</th>
         
                             </tr>
                         <tbody>
                             {% for ingredient in ingredients %}
                             <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ingredient.id}}" id="check" name="{{ingredient.id}}">
-        
-                                    </div>
-        
-                                </td>
-                                <td><img src="{{ ingredient.img}}" width="80px" alt="{{ingredient.name}}"></td>
+
+                                <td><img src="../static/img/mercado/{{ingredient.icon}}" width="70px" alt="{{ingredient.name}}"></td>
                                 <td>{{ingredient.name}}</td>
                                 <td>
                                     <!-- <a href="#" class="btn btn-primary"></a> -->

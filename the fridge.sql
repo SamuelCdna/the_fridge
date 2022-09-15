@@ -126,6 +126,54 @@ CREATE TABLE IF NOT EXISTS `my_fridge`.`ingrediente_receta` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `my_fridge`.`icon_category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`icon_category` ;
+
+CREATE TABLE IF NOT EXISTS `my_fridge`.`icon_category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `route_icon` VARCHAR(80) NOT NULL,
+  `category_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `route_icon`, `category_id`),
+  INDEX `fk_icon_category_categorys1_idx` (`category_id` ASC) VISIBLE,
+  CONSTRAINT `fk_icon_category_categorys1`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `my_fridge`.`categorys` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `my_fridge`.`reviews`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `my_fridge`.`reviews` ;
+
+CREATE TABLE IF NOT EXISTS `my_fridge`.`reviews` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `contenido` VARCHAR(255) NULL,
+  `rate` TINYINT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` INT NOT NULL,
+  `recipe_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_reviews_users1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_reviews_recipes1_idx` (`recipe_id` ASC) VISIBLE,
+  CONSTRAINT `fk_reviews_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `my_fridge`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reviews_recipes1`
+    FOREIGN KEY (`recipe_id`)
+    REFERENCES `my_fridge`.`recipes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

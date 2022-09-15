@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EditarReseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-between align-items-center">
+            <h1>Edita tu reseña! {{user.first_name}}!</h1>
+            <a href="/dashboard/0" class="btn btn-primary">home</a>
+            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+        </header>
+        <form action='/update/reseña' method="post">
+            <input type="hidden" value="{{user.id}}" name="user_id">
+            <input type="hidden" value="{{reseña.id}}" name="id">
+            
+            <div class="form-group">
+                <label for="contenido"><h3>Reseña:</h3></label>
+            {% with messages = get_flashed_messages(category_filter=['reseña']) %}
+                {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+                <textarea class="form-control" name="contenido" id="contenido">{{reseña.contenido}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="Score"><h4>Puntuacion:</h4></label>
+                <select name="rate" id="rate" value="{{reseña.rate}}">
+                    <option value="1" {% if reseña.rate == 1 %} selected {% endif %}>1</option>
+                    <option value="2" {% if reseña.rate == 2 %} selected {% endif %}>2</option>
+                    <option value="3" {% if reseña.rate == 3 %} selected {% endif %}>3</option>
+                    <option value="4" {% if reseña.rate == 4 %} selected {% endif %}>4</option>
+                    <option value="5" {% if reseña.rate == 5 %} selected {% endif %}>5</option>
+                </select> 
+            </div>
+            <input type="submit" value="Actualizar" class="btn btn-success">
+        </form>
+    </div>
+</body>
+</html>

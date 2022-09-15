@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="/dashboard/0" class="btn btn-primary">Home</a>
+        
     {% with messages = get_flashed_messages(category_filter=['my_fridge']) %}
         {% if messages %}
 
@@ -41,7 +41,6 @@
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </form>
-
         
         {%if recipes|length > 0 %}
             {% for item in recipes %}
@@ -54,6 +53,9 @@
                 No hay recetas para mostrar por los ingredientes seleccionados.
             </div>
         {%endif%}
+
+
+        <a href="/dashboard/0" class="btn btn-primary">Home</a>
     
         <script>
             $(document).ready(function() {
