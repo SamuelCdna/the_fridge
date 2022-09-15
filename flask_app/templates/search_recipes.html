@@ -13,9 +13,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body id="fondo">
     <div class="container">
         
     {% with messages = get_flashed_messages(category_filter=['my_fridge']) %}
@@ -29,25 +29,41 @@
 
         {% endif %}
     {% endwith %}
-        <h1>Buscar recetas por ingredientes...!!</h1>
+        <h1 class="mt-5">Buscar recetas por ingredientes...!!</h1>
     
         <form action="/search_recipes" method="POST" class="input-group mb-3">
-            <select class="js-example-basic-multiple form-control" name="search[]" multiple="multiple" >
+            <select class="js-example-basic-multiple form-control select" name="search[]" multiple="multiple" >
                 {% for ingredient in ingredients %}
                     <option value="{{ingredient.name}}">{{ingredient.name}}</option>
                 {% endfor %}
             </select>
             <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn btn-primary position " type="submit">Search</button>
             </div>
         </form>
         
+        
         {%if recipes|length > 0 %}
+            <div class="row">
             {% for item in recipes %}
-                <div class="row">
-                    <div class="col-12">{{item.name}}</div>
-                </div>
+      
+            
+                    <div class="col-4">
+                    
+                        
+                            <div class="card mt-3 " style="width: 18rem; height:22rem;">
+                                <a href="/view_receta/{{item.id}}"><img src="{{ item.img}}" class="d-block w-100 img_box " alt="{{item.name}}"></a> 
+                                <div class="card-body">
+                                    <h1></h1>
+                                <p class="card-text">{{item.description}}</p>
+                                </div>
+                            </div>
+            
+                    </div>
+              
+           
             {% endfor %}
+            </div>
         {%else%}
             <div class="alert alert-primary" role="alert">
                 No hay recetas para mostrar por los ingredientes seleccionados.
@@ -55,7 +71,8 @@
         {%endif%}
 
 
-        <a href="/dashboard/0" class="btn btn-primary">Home</a>
+
+        <a href="/dashboard/0" class="btn btn-primary">Inicio</a>
     
         <script>
             $(document).ready(function() {

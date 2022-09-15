@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body >
 
     <!-- barra de navegación -->
     <nav class="navbar navbar-ligth easy_color_nav " >
@@ -61,6 +61,7 @@
                         </li>
                     </ul>
                     <a class=" btn btn-danger mt-3" href="/logout">Cerrar Sesión</a>
+                    
                 </div>
                 <a class=" btn btn-danger mx-5" href="/deleteuser/{{user.id}}">Eliminar cuenta</a>
             </div>
@@ -70,8 +71,8 @@
     <div class=" text-center">
 
 
-        <div class="row">
-            <div class="col-2">
+        <div class="row ">
+            <div class="col-2 ">
                 <!--  LISTA CATEGORIAS, DONDE UNDES Y CAMBIA DE CATEGORIA -->
                 <ul class="list-group">
                     
@@ -129,10 +130,17 @@
                     </div>
 
                     <!--  BOTON DE MI NEVERA -->
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                    <div   class="tab-pane fade easy_bg" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                         tabindex="0">
+                        <div class="row align-items-center">
+                            <div class="col-8"></div>
+                            <div class="col-3">
+                                <a href="/searchRecipes" class="btn btn-primary mt-3">Ver mi nevera</a>
+                            </div>
 
-                        <a href="/searchRecipes" class="btn btn-primary mt-3">Ver mi nevera</a>
+                        </div>
+
+                        
                     
 
 
@@ -154,76 +162,34 @@
                     
                     </div>
                     <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
-                        tabindex="0">...</div>
+                        tabindex="0">
+                        
+                        <!-- <div class="row mt-3">
+                            {% for recipe in recipes%}
+                                <div class="col">
+                                
+                                    
+                                        <div class="card mt-3 " style="width: 18rem; height:22rem;">
+                                            <a href="/view_receta/{{recipe.id}}"><img src="{{ recipe.img}}" class="d-block w-100 img_box " alt="{{recipe.name}}"></a> 
+                                            <div class="card-body">
+                                                <h1></h1>
+                                            <p class="card-text">{{recipe.description}}</p>
+                                            </div>
+                                        </div>
+                        
+                                </div>
+                                {% endfor %}
+                                
+                            </div> -->
+                    
+                    </div>
                     
                 </div>
 
 
 
 
-                <!-- <div class="nav nav-tabs px-5" id="nav-tab" role="tablist">
-                    <button class="nav-link active px-5" id="nav-home-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                        aria-selected="true">RECETAS</button>
-                    <button class="nav-link px-5" id="nav-profile-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                        aria-selected="false">Novedades</button>
-                    <button class="nav-link px-5" id="nav-contact-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
-                        aria-selected="false">Reseñas y favoritos </button>
-                    <button class="nav-link px-5" id="nav-contact-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-recipes" type="button" role="tab" aria-controls="nav-recipes"
-                        aria-selected="false">Mi nevera </button>
-                </div> -->
 
-                <!-- 
-                <div class="tab-content" id="nav-tabContent"> -->
-                <!-- 
-                    <div class="tab-pane fade show active col-9 mt-5" id="nav-home" role="tabpanel"
-                        aria-labelledby="nav-home-tab" tabindex="0"> -->
-                <!-- <div class="form-check ">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Default checkbox
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Default checkbox
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Checked checkbox
-                            </label> -->
-
-                <!-- </div>
-
-
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                        tabindex="0">
-
-                    </div>
-
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
-                        tabindex="0">
-
-                    </div>
-
-                    <div class="tab-pane fade" id="nav-recipes" role="tabpanel" aria-labelledby="nav-contact-tab"
-                        tabindex="0">
-                        <div class="form-check ">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Default checkbox
-                            </label>
-
-                    </div>
-
-
-                </div> -->
 
             </div>
         </div>

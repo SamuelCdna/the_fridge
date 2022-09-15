@@ -8,48 +8,63 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
 </head>
-<body>
+<body class="easy_bg">
     <div class="container">
         <div class="row">
-            <div class="col-7">
-
-                {% with messages = get_flashed_messages(category_filter=['registro']) %}
-                    {% if messages %}
-                        <div class="alert alert-danger">
-                            {% for message in messages %}
-                                <p>{{message}}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-            </div>
-            <div class="col-5">
-                <h2>Inicia Sesión</h2>
-
+            <div class="col-12 mt-5">
                 {% with messages = get_flashed_messages(category_filter=['login']) %}
-                    {% if messages %}
-                        <div class="alert alert-danger">
-                            {% for message in messages %}
-                                <p>{{message}}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-
-                <form action="/login" method="post">
-                    <div class="form-group">
-                        <label for="email2">E-mail</label>
-                        <input type="text" id="email2" name="email" class="form-control">
+                {% if messages %}
+                    <div class="alert alert-danger">
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
                     </div>
-                    <div class="form-group">
-                        <label for="password2">Contraseña</label>
-                        <input type="password" id="password2" name="password" class="form-control">
+                {% endif %}
+            {% endwith %}
+            
+            <div class="contenedor ">
+              
+                <article class="mb-5" >
+                    <h1 class="text-center">Bienvenido a </h1>
+                    <img src="../static/img/logo.png"  width="110px"/>
+                    <h1 class="text-center">Easy Cook </h1>
+                    <p>
+                        Es un placer
+                        <br>
+                        que estes visitandonos
+                    </p>
+                    <p>
+                        
+                    </p>
+                    <p>
+                        <button id="btn-abrir-popup" class="button btn-abrir-popup mb-5">click para ingresar</button>
+                    </p>
+                </article>
+        
+                <div class="overlay" id="overlay">
+                    <div class="popup" id="popup">
+                        <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                        <h3>bienvenido</h3>
+                        <h4>ingresa los campos</h4>
+                        <form action="/login" method="post">
+                            <div class="form-group">
+                                <label for="email2">E-mail</label>
+                                <input type="text" id="email2" name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password2">Contraseña</label>
+                                <input type="password" id="password2" name="password" class="form-control">
+                            </div>
+                            <input type="submit" value="Iniciar Sesión" class="btn btn-warning ">
+                        </form>
+                        <p>¿No tienes cuenta?</p>
+                        <a id="easy_color" class=" btn btn-danger mt-3" href="/registro">Regristrate</a>
                     </div>
-                    <input type="submit" value="Iniciar Sesión" class="btn btn-warning">
-                </form>
-                <a href="/registro" class= "btn btn-success"> registrate</a>
+                </div>
             </div>
-        </div>
+
+            </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 

@@ -43,7 +43,7 @@
                                     <tbody>
                                         {% for category in categories%}
                                         <tr>
-                                            <td><input class="form-check-input me-1" type="checkbox" value="{{category.id}}" name="{{category.name}}" id="firstCheckboxStretched"></td>
+                                            <td><img src="../static/img/icon_category/{{category.icon}}" width="50px" alt="{{category.name}}"/></td>
                                             <td>{{category.name}}</td>
                                             <td>
                                                 <a href="/edit_categories/{{category.id}}" class="btn btn-warning">Editar</a>
@@ -57,7 +57,7 @@
 
             <div class="col-3 text-end">
                 <a href="/create/category" class="btn btn-success mt-3">Crear nueva categoria</a>
-                <a href="/dashboard/0" class="btn btn-primary mt-3">Home</a>
+                <a href="/dashboard/0" class="btn btn-primary mt-3">Inicio</a>
                 
             </div>
             

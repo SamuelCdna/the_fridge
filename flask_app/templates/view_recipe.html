@@ -1,111 +1,169 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Receta</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 </head>
+
 <body>
-    <div class="container">
-        <header class="d-flex justify-content-between align-items-center">
-            <a href="/dashboard/0" class="btn btn-primary">home</a>
-            <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
-        </header>
-        <main>
-            <div class="card">
-                
-                <div class="card-body">
-                    <div>
-                        <b>Nombre de la receta: </b>{{recipe.name}}
+    <nav class="navbar navbar-ligth easy_color_nav ">
+        <div class="container-fluid">
+            <p></p>
+            <h1 class="text-white">Easy Cook</h1>
+            <button class="navbar-toggler btn_white" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header pattern">
+                    <div class="box_logo">
+                        <img src="../static/img/easy.jpg" width="100px" height="70px" class=" mx-4  " />
                     </div>
-                    <div>
-                        <b>tiempo de preparacion:</b> {{recipe.time_cook}} mins
-                    </div>
-                    <div>
-                        <b>descripcion:</b>  {{recipe.description}}
-                    </div> 
-                    <div>
-                        <b>Preparacion:</b>  {{recipe.preparation}}
-                        <b>Preparacion:</b>  {{recipe.preparation}}
+                    <h4 class="offcanvas-title" id="offcanvasNavbarLabel">{{user.last_name +' '+ user.first_name}}
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
+                        <li class="nav-item">
 
-                        <b>Ingredientes:</b>  
-                                {% for ingredient in recipe.ingrediente%}
-                                <img src="../static/img/mercado/{{ingredient.icon}}" width="70px" alt="{{ingredient.name}}">{{ingredient.amount+ ' '+ingredient.name}},
-                                {% endfor %}                
-                    </div> 
-                    <div>
-                            {% if recipe.level_recipe == 1 %}
-                            <b>Dificultad :</b> Amateur
-                            {% endif %}
-                            {% if recipe.level_recipe == 2 %}
-                            <b>Dificultad :</b> Intermedio
-                            {% endif %}
-                            {% if recipe.level_recipe == 3 %}
-                            <b>Dificultad :</b> Experto
-                            {% endif %}
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Subir foto de perfil
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form action="/upload/logo/user" method="POST" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <input type="file" id="uploadprofile" name="uploadprofile"
+                                                accept=".jpg,.png">
+                                            <input type="submit" value="Subir foto" class="btn btn_form mt-3">
+                                        </div>
+
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="col">
+                        <a class=" btn btn-danger mt-3" href="/logout">Cerrar Sesión</a>
+                        <a class=" btn btn-danger  mt-3" id="easy_color" href="/dashboard/0">Inicio</a>
                     </div>
-                    <div>
-                        <b>Mira las Reseñas de esta receta:</b>
-                        {% for reseña in reseñas %}  
-                        {% if reseña.recipe_id == recipe.id %}
-                        <div class="reseña">
-                            <h5>Publicada por: {{user.first_name}}</h5>
-                                    <h6>Reseña:</h6>
-                                    <textarea disabled rows="4" cols="40" >{{reseña.contenido}}</textarea>
-                                    <h6>Puntuacion:</h6>
-                                    <h6>{{reseña.rate}}</h6>
-                                    {% if reseña.user_id == user.id %}
-                                    <a href="/edit/reseña/{{reseña.id}}" class="btn btn-primary">Editar</a>
-                                    <a href="/delete/reseña/{{reseña.id}}" class="btn btn-danger">Borrar</a>
-                                    {% endif %}
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                    </div>
-                    <div class="col-4">
-                        <form action="/create/reseña" method="post">
-                            <input type="hidden" value="{{user.id}}" name="user_id">
-                            <input type="hidden" value="{{recipe.id}}" name="recipe_id">
-                            <div class="form-group">
-                                <label for="content"><b>Deja tus comentarios/reseñas de la receta</b></label>
-                            {% with messages = get_flashed_messages(category_filter=['reseña']) %}
-                                {% if messages %}
-                        
-                                <div class="alert alert-danger">
-                                    {% for message in messages %}
-                                        <p>{{message}}</p>
-                                {% endfor %}
-                                </div>
-                        
-                                {% endif %}
-                            {% endwith %}
-                                <textarea class="form-control" name="contenido" id="contenido" cols="50" rows="5"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="Score">Puntuacion: </label>
-                                <select name="rate" id="rate">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                            <input type="submit" value="Crear" class="btn btn-success">
-                        </form>
-                    </div>
-                    <div>
-                        <img src="{{ recipe.img}}" width="200px" alt="{{recipe.name}}">
-                    </div>
-                <div>
-                
+                </div>
+                <a class=" btn btn-danger mx-5" href="/deleteuser/{{user.id}}">Eliminar cuenta</a>
             </div>
-        </main>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mt-3">
+                <div class="card mb-3" style="max-width: 800px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ recipe.img}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8 ">
+                            <div class="card-body ">
+                                <h5 class="card-title"><b>{{recipe.name}}</b></h5>
+                                <p class="card-text">Tiempo de cocción: </p>{{recipe.time_cook}}min
+                                <p class="card-text">Descripción: </p>{{recipe.description}}
+                                <p class="card-text">Preparación:</p> {{recipe.preparation}}<br>
+                                {% for ingredient in recipe.ingrediente%}
+                                {% if ingredient == '' %}
+                                <p>Lo sentimos a esta receta está incompleta le faltan los ingredientes </p>
+                                {% else %}
+                                <p><img src="../static/img/mercado/{{ingredient.icon}}" width="30px"
+                                        alt="{{ingredient.name}}"> {{ingredient.name}}- {{ingredient.amount}}</p>
+                                {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h4 class="mt-3">Mira las Reseñas de esta receta</h4>
+                    {% for reseña in reseñas %}
+                    {% if reseña.recipe_id == recipe.id %}
+                        <div class="reseña col-5 mt-5">
+                            <h5>Publicada por: {{user.first_name}}</h5>
+                            <h6>Reseña:</h6>
+                            <textarea disabled rows="3" cols="30">{{reseña.contenido}}</textarea>
+                            <h6>Puntuacion:</h6>
+                            <h6>{{reseña.rate}}</h6>
+                            {% if reseña.user_id == user.id %}
+                            <a href="/edit/reseña/{{reseña.id}}" class="btn btn-primary">Editar</a>
+                            <a href="/delete/reseña/{{reseña.id}}" class="btn btn-danger">Borrar</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+
+        
+
+            <div class="col-4 mt-3">
+                <form action="/create/reseña" method="post">
+                    <input type="hidden" value="{{user.id}}" name="user_id">
+                    <input type="hidden" value="{{recipe.id}}" name="recipe_id">
+                    <div class="form-group">
+                        <label for="content"><b>Deja tus comentarios/reseñas de la receta</b></label>
+                        {% with messages = get_flashed_messages(category_filter=['reseña']) %}
+                        {% if messages %}
+
+                        <div class="alert alert-danger">
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+
+                        {% endif %}
+                        {% endwith %}
+                        <textarea class="form-control" name="contenido" id="contenido" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Score">Puntuacion: </label>
+                        <select name="rate" id="rate">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Crear" class="btn btn-success">
+                </form>
+
+            </div>
+        </div>
+
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>

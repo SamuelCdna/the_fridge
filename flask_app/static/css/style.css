@@ -20,8 +20,10 @@ body {
 .contenedor {
 	width: 90%;
 	max-width: 1000px;
-	margin: 20px auto;
+	margin: 25px auto;
 }
+
+
 
 .contenedor article {
 	line-height: 28px;
@@ -30,21 +32,21 @@ body {
 .contenedor article h1 {
 	font-size: 30px;
 	text-align: left;
-	padding: 50px 0;
+	padding: 30px 0;
 }
 
 .contenedor article p {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .contenedor article .btn-abrir-popup {
 	padding: 0 20px;
-	margin-bottom: 20px;
+	margin-bottom: 35px;
 	height: 40px;
 	line-height: 40px;
 	border: none;
 	color: #fff;
-	background: #5E7DE3;
+	background: rgb(254, 166, 32);
 	border-radius: 3px;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
@@ -54,7 +56,7 @@ body {
 }
 
 .contenedor article .btn-abrir-popup:hover {
-	background: rgba(94,125,227, .9);
+	background: rgba(252, 126, 30, 0.9);
 }
 
 /* ------------------------- */
@@ -236,7 +238,7 @@ p {
     text-align: center;
 }
 
-button {
+.button {
     cursor: pointer;
     border-radius: 0;
     border: none;
@@ -312,6 +314,7 @@ dialog button:hover {
 
 #easy_color{
 	background-color: rgb(254, 166, 32);
+	border: rgb(254, 166, 32);
 }
 
 .img_box {
@@ -346,4 +349,19 @@ dialog button:hover {
 
 .size_acciones{
 	width: 250px;
+}
+
+.easy_bg{
+	background-image: url(../img/banner\ easy_gray_low.png);
+	background-size: cover;
+}
+
+.select{
+	padding: 15px;
+}
+
+#fondo{
+	background-image: url(../img/fondo\ nevera.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
 }
