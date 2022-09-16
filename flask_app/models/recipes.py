@@ -78,8 +78,9 @@ class Recipes:
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
 
+    @classmethod
     def delete(cls, formulario): #Recibe formulario con id de receta a borrar
-        query = "DELETE FROM ingrediente_receta WHERE recipe_id = %(id)s"
+        query = "DELETE FROM recipes WHERE id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
 

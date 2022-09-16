@@ -115,6 +115,7 @@ def delete_receta(id):
         return redirect('/')
     
     formulario = {"id": id}
+    Ingrerecipe.delete(formulario)
     Recipes.delete(formulario)
     return redirect('/view_recipes')
 

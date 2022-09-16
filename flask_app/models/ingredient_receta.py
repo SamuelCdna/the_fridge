@@ -16,4 +16,8 @@ class Ingrerecipe:
             query = F" INSERT INTO ingrediente_receta (recipe_id,ingredient_id) VALUES('{id_recipe}','{i}');"
             connectToMySQL('my_fridge').query_db(query)
 
-        
+    @classmethod
+    def delete(cls, formulario): #Recibe formulario con id de receta a borrar
+        query = "DELETE FROM ingrediente_receta WHERE recipe_id = %(id)s"
+        result = connectToMySQL('my_fridge').query_db(query, formulario)
+        return result
