@@ -78,9 +78,8 @@ class Recipes:
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
 
-    @classmethod
     def delete(cls, formulario): #Recibe formulario con id de receta a borrar
-        query = "DELETE FROM recipes WHERE id = %(id)s"
+        query = "DELETE FROM ingrediente_receta WHERE recipe_id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
         return result
 
@@ -125,7 +124,7 @@ class Recipes:
         result = connectToMySQL('my_fridge').query_db(query,formulario) 
         recipe = cls(result[0])             
         for recipe in result:
-            query = "SELECT name, amount, icon FROM ingrediente_receta LEFT JOIN ingredients ON ingredient_id = ingredients.id WHERE recipe_id = "+str(recipe['id'])
+            query = "SELECT name, amount, icon FROM ingrediente_receta INNER JOIN ingredients ON ingredient_id = ingredients.id WHERE recipe_id = "+str(recipe['id'])
             result_receta = connectToMySQL('my_fridge').query_db(query)
             ingredients = []
             for ingredient in result_receta:

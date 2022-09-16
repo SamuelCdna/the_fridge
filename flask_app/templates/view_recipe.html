@@ -83,12 +83,16 @@
                                 <p class="card-text">Tiempo de cocción: </p>{{recipe.time_cook}}min
                                 <p class="card-text">Descripción: </p>{{recipe.description}}
                                 <p class="card-text">Preparación:</p> {{recipe.preparation}}<br>
+                                <p class="">Ingredientes</p>
                                 {% for ingredient in recipe.ingrediente%}
                                 {% if ingredient == '' %}
                                 <p>Lo sentimos a esta receta está incompleta le faltan los ingredientes </p>
                                 {% else %}
+                                
                                 <p><img src="../static/img/mercado/{{ingredient.icon}}" width="30px"
-                                        alt="{{ingredient.name}}"> {{ingredient.name}}- {{ingredient.amount}}</p>
+                                        alt=""> </p>* {{ingredient.name}}
+                                        
+                            
                                 {% endif %}
                                 {% endfor %}
 
