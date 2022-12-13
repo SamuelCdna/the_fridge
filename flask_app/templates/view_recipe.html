@@ -58,9 +58,11 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="col">
-                        <a class=" btn btn-danger mt-3" href="/logout">Cerrar Sesión</a>
-                        <a class=" btn btn-danger  mt-3" id="easy_color" href="/dashboard/0">Inicio</a>
+
+                    <div class=" mx-2 row">
+                        <a href="/searchRecipes" class="btn  mt-3 col-7" id="easy_color">Ver mi nevera</a>
+                        <a class=" btn btn-danger  text-black mt-3 col-7" id="easy_color2" href="/dashboard/0">Inicio</a>
+                        <a class=" btn btn-danger mt-3 col-7" href="/logout">Cerrar Sesión</a>
                     </div>
                 </div>
                 <a class=" btn btn-danger mx-5" href="/deleteuser/{{user.id}}">Eliminar cuenta</a>
@@ -71,7 +73,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-8 mt-3">
+            <div class="col-9 mt-3">
                 <div class="card mb-3" style="max-width: 800px;">
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -83,18 +85,21 @@
                                 <p class="card-text">Tiempo de cocción: </p>{{recipe.time_cook}}min
                                 <p class="card-text">Descripción: </p>{{recipe.description}}
                                 <p class="card-text">Preparación:</p> {{recipe.preparation}}<br>
-                                <p class="">Ingredientes</p>
+                                <p >Ingredientes</p>
+                                <div class="list_ingre">
                                 {% for ingredient in recipe.ingrediente%}
                                 {% if ingredient == '' %}
                                 <p>Lo sentimos a esta receta está incompleta le faltan los ingredientes </p>
                                 {% else %}
-                                
-                                <p><img src="../static/img/mercado/{{ingredient.icon}}" width="30px"
-                                        alt=""> </p>* {{ingredient.name}}
+                                <div class="one_ingre">
+                                <img  class=""  src="../static/img/mercado/{{ingredient.icon}}" width="25px" alt="ing">
+                                <p class=""> </p>* {{ingredient.name}}
+                                </div>
                                         
                             
                                 {% endif %}
                                 {% endfor %}
+                            </div>
 
                             </div>
                         </div>
@@ -106,14 +111,15 @@
                     {% for reseña in reseñas %}
                     {% if reseña.recipe_id == recipe.id %}
                         <div class="reseña col-5 mt-5">
-                            <h5>Publicada por: {{user.first_name}}</h5>
+                            
+                            <h5>Publicada por: USUARIO {{reseña.user_id}}</h5>
                             <h6>Reseña:</h6>
                             <textarea disabled rows="3" cols="30">{{reseña.contenido}}</textarea>
                             <h6>Puntuacion:</h6>
                             <h6>{{reseña.rate}}</h6>
                             {% if reseña.user_id == user.id %}
-                            <a href="/edit/reseña/{{reseña.id}}" class="btn btn-primary">Editar</a>
-                            <a href="/delete/reseña/{{reseña.id}}" class="btn btn-danger">Borrar</a>
+                            <a href="/edit/reseña/{{reseña.id}}/{{recipe.id}}" class="btn btn-primary">Editar</a>
+                            <a href="/delete/reseña/{{reseña.id}}/{{recipe.id}}" class="btn btn-danger">Borrar</a>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -126,7 +132,7 @@
 
         
 
-            <div class="col-4 mt-3">
+            <div class="col-3 mt-3">
                 <form action="/create/reseña" method="post">
                     <input type="hidden" value="{{user.id}}" name="user_id">
                     <input type="hidden" value="{{recipe.id}}" name="recipe_id">

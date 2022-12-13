@@ -33,8 +33,11 @@ class Category:
         results = connectToMySQL('my_fridge').query_db(query) #Lista de diccionarios 
         categorias = []
         for categoria in results:
-            
+            print(categoria)
             categorias.append(cls(categoria)) 
+                
+        
+
         
         return categorias
 

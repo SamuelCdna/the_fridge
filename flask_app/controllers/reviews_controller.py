@@ -25,17 +25,17 @@ def createReseña():
     Reseñas.save(request.form)
     return redirect('/view_receta/'+ request.form['recipe_id'])
 
-@app.route('/delete/reseña/<int:id>')
-def delete_reseña(id):
+@app.route('/delete/reseña/<int:id>/<int:id_re>')
+def delete_reseña(id,id_re):
     if 'user_id' not in session: 
         return redirect('/')
-    
+    id_recipe = id_re
     formulario = {"id": id}
     Reseñas.delete(formulario)
-    return redirect('/dashboard/0')
+    return redirect('/view_receta/'+str(id_recipe))
 
-@app.route('/edit/reseña/<int:id>') 
-def edit_reseña(id):
+@app.route('/edit/reseña/<int:id>/<int:id_re>') 
+def edit_reseña(id,id_re):
     if 'user_id' not in session: 
         return redirect('/')
     formulario = {
@@ -43,17 +43,21 @@ def edit_reseña(id):
     }
     user = User.get_by_id(formulario) 
     formulario_reseña = {"id": id}
+    form_recipe = {"id":id_re}
     reseña = Reseñas.get_by_id(formulario_reseña)
-    recipes = Recipes.recipe_and_category()
-    return render_template('edit_reseña.html', user=user, reseña=reseña, recipes=recipes)
+    recipe = Recipes.recipe_and_category_by_id_recipe(form_recipe)
+    return render_template('edit_reseña.html', user=user, reseña=reseña, recipe=recipe)
 
 @app.route('/update/reseña', methods=['POST'])
 def update_res():
+    print(request.form['id'])
     if 'user_id' not in session: 
         return redirect('/')
 
     if not Reseñas.valida_reseña(request.form): 
         return redirect('/edit/reseña/'+ request.form['id'])
-
+    print("....el id es")
+    print(request.form['id_recipe'])
+    
     Reseñas.update(request.form)
-    return redirect('/dashboard/0')
+    return redirect('/view_receta/'+ request.form['id_recipe'])

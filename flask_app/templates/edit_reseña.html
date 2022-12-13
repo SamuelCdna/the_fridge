@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    
     <div class="container">
         <header class="d-flex justify-content-between align-items-center">
             <h1>Edita tu reseña! {{user.first_name}}!</h1>
@@ -17,6 +18,9 @@
         <form action='/update/reseña' method="post">
             <input type="hidden" value="{{user.id}}" name="user_id">
             <input type="hidden" value="{{reseña.id}}" name="id">
+            {% for element in recipe %}
+            <input type="hidden" value="{{element.id}}" name="id_recipe">
+            {% endfor %}
             
             <div class="form-group">
                 <label for="contenido"><h3>Reseña:</h3></label>

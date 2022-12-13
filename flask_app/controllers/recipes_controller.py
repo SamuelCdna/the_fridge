@@ -92,10 +92,11 @@ def edit_receta(id):
     user = User.get_by_id(formulario) 
     formulario_receta = {"id": id}
 
-    receta = Recipes.get_by_id(formulario_receta)
+    receta = Recipes.recipe_and_category_by_id_recipe(formulario_receta)
+    
     categories= Category.get_all()
-
     return render_template('edit_receta.html', user=user, receta=receta, categories = categories)
+
 
 @app.route('/update/recipe', methods=['POST'])
 def update_receta():

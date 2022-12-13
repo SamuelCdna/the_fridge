@@ -16,6 +16,17 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body id="fondo">
+
+
+    <nav class="navbar navbar-ligth easy_color_nav " >
+        <div class="container-fluid">
+            <p></p>
+            <h1 class="text-white">Easy Cook</h1>
+            <p></p>
+
+        </div>
+    </nav>
+
     <div class="container">
         
     {% with messages = get_flashed_messages(category_filter=['my_fridge']) %}
@@ -46,7 +57,7 @@
         {%if recipes|length > 0 %}
             <div class="row">
             {% for item in recipes %}
-      
+
             
                     <div class="col-4">
                     
@@ -60,8 +71,7 @@
                             </div>
             
                     </div>
-              
-           
+
             {% endfor %}
             </div>
         {%else%}
@@ -72,12 +82,16 @@
 
 
 
-        <a href="/dashboard/0" class="btn btn-primary">Inicio</a>
+        <a href="/dashboard/0" class="btn col-2 " id="easy_color2">Inicio</a>
     
         <script>
             $(document).ready(function() {
                 $('.js-example-basic-multiple').select2();
             });
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

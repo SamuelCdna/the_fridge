@@ -50,7 +50,7 @@
                                             
                                         </a> -->
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{recipe.id}}">
+                                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{recipe.id}}">
                                             Mostrar
                                         </button>
                                         
@@ -58,26 +58,27 @@
                                             <div class="modal-dialog">
                                             <div class="modal-content text-center ">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title " id="exampleModal{{recipe.id}}Label">{{recipe.name}}</h5>
+                                                <h5 class="modal-body " id="exampleModal{{recipe.id}}Label">{{recipe.name}}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body  ">
                                                     <div class=" row">
                                                         <img src="{{ recipe.img}}" class="recipe_view "   alt="{{recipe.name}}">
                                                         <p>{{recipe.description}}</p>
+                                                        <hr>
                                                         <p>{{recipe.preparation}}</p>
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                                 
                                                 </div>
                                             </div>
                                             </div>
                                         </div>
-                                        <a href="/edit/recipe/{{recipe.id}}" class="btn btn-sm btn-primary">Editar</a>
-                                        <a href="/delete/{{recipe.id}}" class="btn btn-sm btn-primary">Borrar</a>
+                                        <a href="/edit/recipe/{{recipe.id}}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="/delete/{{recipe.id}}" class="btn btn-sm btn-danger">Borrar</a>
                                         
                                     </td>
                                     
@@ -96,8 +97,8 @@
             </div>
 
             <div class="col-2 text-end">
-                <a href="/dashboard/0" class="btn btn-primary">Inicio</a>
-                <a href="/Creceta" class="btn btn-primary">Crear Nueva Receta</a>
+                <a href="/dashboard/0" class="btn col-12 my-2" id="easy_color2">Inicio</a>
+                <a href="/Creceta" class="btn col-12" id="easy_color">Crear Nueva Receta</a>
             </div>
 
 

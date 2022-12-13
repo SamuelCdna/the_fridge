@@ -39,7 +39,6 @@ class Recipes:
         return es_valido
 
 
-
     @classmethod 
     def save(cls, formulario):
         query = "INSERT INTO recipes (name, time_cook, level_recipe, description, preparation, user_id, category_id , img ) VALUES (%(name)s, %(time_cook)s, %(level_recipe)s,  %(description)s, %(preparation)s, %(user_id)s ,%(category_id)s,%(img)s)"
@@ -66,6 +65,12 @@ class Recipes:
         return recipescategory
 
     @classmethod
+    def recipe_and_category_by_id_recipe(cls,formulario): 
+        query = "SELECT *, categorys.name AS categoria FROM recipes LEFT JOIN categorys ON recipes.category_id = categorys.id WHERE recipes.id = %(id)s ;"
+        result = connectToMySQL('my_fridge').query_db(query, formulario)        
+        return result
+
+    @classmethod
     def get_by_id(cls, formulario): #formulario = {id: 1}
         query = "SELECT recipes.*, first_name  FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
         result = connectToMySQL('my_fridge').query_db(query, formulario) #Lista de diccionarios
@@ -74,8 +79,9 @@ class Recipes:
 
     @classmethod
     def update(cls, formulario):
-        query = "UPDATE recipes SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , description=%(description)s , preparation=%(preparation)s, img=%(img)s WHERE id = %(id)s"
+        query = "UPDATE recipes SET name=%(name)s, time_cook=%(time_cook)s , level_recipe=%(level_recipe)s , description=%(description)s , preparation=%(preparation)s, img=%(img)s, category_id=  %(category_id)s WHERE id = %(id)s"
         result = connectToMySQL('my_fridge').query_db(query, formulario)
+        print(result)
         return result
 
     @classmethod

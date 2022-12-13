@@ -36,6 +36,7 @@ class Reseñas:
         reseñas = []
         for reseña in results:
             reseñas.append(cls(reseña))
+            print(reseña)
         return reseñas
 
     @classmethod
