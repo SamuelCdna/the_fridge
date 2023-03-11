@@ -1,8 +1,0 @@
-id,name,time_cook,level_recipe,description,preparation,created_at,updated_at,img,user_id,category_id
-1,Tacada,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:14:39","2022-09-11 00:55:28",https://i.pinimg.com/564x/04/c6/a0/04c6a0d2dbc042239d3a726be0dc8e19.jpg,1,2
-2,"Tacos de carnitas",30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:15:21","2022-09-10 22:34:57",https://i.pinimg.com/736x/f5/20/10/f52010f1acafbe3969cc567c41d44865.jpg,1,2
-3,Tacos,30,1,"necesitas una tortilla y cositas","le echas las cositas a la tortilla","2022-09-10 13:16:03","2022-09-10 14:13:14",https://i.pinimg.com/564x/a4/ec/49/a4ec498f22379e930c63678d0e507994.jpg,1,2
-4,"Brochetas de camaron",160,3,"brochetas con piÃƒÂ±a y camaron","empala los ingredientes y los pone a asar","2022-09-10 13:32:54","2022-09-10 13:32:54",https://i.pinimg.com/564x/6f/8d/41/6f8d41c3905123845e3f1398dbe8367f.jpg,1,5
-5,"Ensalada fresca de pollo ",80,1,"Ensalada con pollo, maiz y nueces","pica todo, cocina el pollo y lo echa a un bowl y le adiciona vinagreta","2022-09-10 13:38:48","2022-09-10 13:38:48",https://i.pinimg.com/564x/f5/09/44/f509447f75a554d4249a21f48c5b792a.jpg,1,4
-30,"Taco de carne",40,2,"Taco con carne y aliños","caliente la tortilla, cocinar la carne y armar","2022-09-13 23:01:53","2022-09-13 23:01:53",https://i.pinimg.com/564x/da/2e/22/da2e22c7e30b32b4077bef730279cad7.jpg,1,2
-31,Salchipapas,55,1,Salchipapas,"Pelar, picar todo y fritar sasonar al gusto","2022-09-13 23:29:52","2022-09-13 23:29:52",https://i.pinimg.com/564x/91/24/5a/91245a455740aa796147acd080c7b33a.jpg,1,7
